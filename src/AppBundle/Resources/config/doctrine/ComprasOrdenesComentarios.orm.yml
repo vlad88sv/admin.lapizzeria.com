@@ -1,0 +1,50 @@
+AppBundle\Entity\ComprasOrdenesComentarios:
+    type: entity
+    table: compras_ordenes_comentarios
+    indexes:
+        creado_dt:
+            columns:
+                - creado_dt
+        FK_estado:
+            columns:
+                - estado_id
+        idx_activo:
+            columns:
+                - activo
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        comentario:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        creadoDt:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: creado_dt
+        activo:
+            type: boolean
+            nullable: false
+            comment: ''
+            default: '1'
+    manyToOne:
+        estado:
+            targetEntity: ComprasOrdenesEstados
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                estado_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

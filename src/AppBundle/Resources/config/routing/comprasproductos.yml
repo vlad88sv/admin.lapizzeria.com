@@ -1,0 +1,30 @@
+compras_productos:
+    path:     /
+    defaults: { _controller: "AppBundle:compras/ComprasProductos:index" }
+
+compras_productos_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:compras/ComprasProductos:show" }
+
+compras_productos_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:compras/ComprasProductos:new" }
+
+compras_productos_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:compras/ComprasProductos:create" }
+    requirements: { _method: post }
+
+compras_productos_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:compras/ComprasProductos:edit" }
+
+compras_productos_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:compras/ComprasProductos:update" }
+    requirements: { _method: post|put }
+
+compras_productos_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:compras/ComprasProductos:delete" }
+    requirements: { _method: post|delete }

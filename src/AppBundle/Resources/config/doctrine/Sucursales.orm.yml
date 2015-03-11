@@ -1,0 +1,39 @@
+AppBundle\Entity\Sucursales:
+    type: entity
+    table: sucursales
+    indexes:
+        activo:
+            columns:
+                - activo
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        telefono:
+            type: boolean
+            nullable: false
+            comment: ''
+            default: '1'
+        direccion:
+            type: boolean
+            nullable: false
+            comment: ''
+            default: '1'
+        activo:
+            type: boolean
+            nullable: false
+            comment: ''
+            default: '1'
+    lifecycleCallbacks: {  }

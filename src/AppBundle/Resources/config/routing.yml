@@ -1,0 +1,16 @@
+app_compras_productos_unidades:
+    resource: "@AppBundle/Resources/config/routing/comprasproductosunidades.yml"
+    prefix:   /compras/productos/unidades
+
+app_compras_proveedores:
+    resource: "@AppBundle/Resources/config/routing/comprasproveedores.yml"
+    prefix:   /compras/proveedores
+
+homepage:
+    path:     /
+    defaults: { _controller: "AppBundle:Default:index" }
+
+app_compras_productos:
+    resource: "@AppBundle/Resources/config/routing/comprasproductos.yml"
+    prefix:   /compras/productos
+

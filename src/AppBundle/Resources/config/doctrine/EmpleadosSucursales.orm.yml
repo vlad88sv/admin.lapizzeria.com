@@ -1,0 +1,48 @@
+AppBundle\Entity\EmpleadosSucursales:
+    type: entity
+    table: empleados_sucursales
+    indexes:
+        FK_empleado:
+            columns:
+                - empleado_id
+        FK_sucursal:
+            columns:
+                - sucursal_id
+        activo:
+            columns:
+                - activo
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        activo:
+            type: boolean
+            nullable: false
+            comment: ''
+            default: '1'
+    manyToOne:
+        empleado:
+            targetEntity: Empleados
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                empleado_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        sucursal:
+            targetEntity: Sucursales
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                sucursal_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

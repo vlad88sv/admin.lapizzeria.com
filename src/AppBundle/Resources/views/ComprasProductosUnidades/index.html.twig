@@ -1,0 +1,57 @@
+{% extends '::base.html.twig' %}
+
+{% block page_sub_header %}Compras: lista de unidades{% endblock %}
+
+{% block body -%}
+    
+    {% if (entities is defined and entities|length == 0) %}
+        <div class="alert alert-info" role="alert">
+            No hay ninguna unidad ingresada.
+            <a href="{{ path('compras_productos_unidades_new') }}">
+                Agregar uno
+            </a>
+        </div>
+    {% endif %}
+    
+    <table class="records_list table table-hover table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Abreviatura</th>
+                <th>Nombre singular</th>
+                <th>Nombre plural</th>
+                <th>Activo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('compras_productos_unidades_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.abreviatura }}</td>
+                <td>{{ entity.nombreSingular }}</td>
+                <td>{{ entity.nombrePlural }}</td>
+                <td>{{ entity.activo }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('compras_productos_unidades_show', { 'id': entity.id }) }}">ver</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('compras_productos_unidades_edit', { 'id': entity.id }) }}">editar</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('compras_productos_unidades_new') }}">
+                Agregar nueva unidad
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

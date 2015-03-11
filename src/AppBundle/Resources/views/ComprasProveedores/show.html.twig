@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+
+{% block page_sub_header %}Compras: detalle de proveedor {{ entity.nombre }}{% endblock %}
+
+{% block body -%}
+    <table class="record_properties table table-condensed table-responsive">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de proveedor</th>
+                <td>{{ entity.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Contacto</th>
+                <td>{{ entity.contacto }}</td>
+            </tr>
+            <tr>
+                <th>Teléfono</th>
+                <td>{{ entity.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Dirección</th>
+                <td>{{ entity.direccion }}</td>
+            </tr>
+            <tr>
+                <th>Comentarios</th>
+                <td>{{ entity.comentarios }}</td>
+            </tr>
+            <tr>
+                <th>Activo</th>
+                <td>{{ entity.activo ? 'Si' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a class="btn btn-sm btn-info" href="{{ path('compras_proveedores') }}">
+            Regresar a la lista
+        </a>
+    </li>
+    <li>
+        <a class="btn btn-sm btn-primary" href="{{ path('compras_proveedores_edit', { 'id': entity.id }) }}">
+            Editar
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block page_sub_header %}Compras: edición de unidades{% endblock %}
+
+{% block body -%}
+    
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('compras_productos_unidades') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

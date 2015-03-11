@@ -1,0 +1,13 @@
+AppBundle\Entity\ComprasOrdenes:
+    type: entity
+    table: compras_ordenes
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    lifecycleCallbacks: {  }

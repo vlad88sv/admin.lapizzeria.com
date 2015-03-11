@@ -1,0 +1,46 @@
+AppBundle\Entity\ComprasOrdenesEstados:
+    type: entity
+    table: compras_ordenes_estados
+    indexes:
+        activo:
+            columns:
+                - activo
+        relevante:
+            columns:
+                - relevante
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        estado:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+        relevante:
+            type: boolean
+            nullable: false
+            comment: ''
+        activo:
+            type: boolean
+            nullable: false
+            comment: ''
+        creadoPor:
+            type: integer
+            nullable: true
+            unsigned: true
+            comment: ''
+            column: creado_por
+        creadoDt:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: creado_dt
+    lifecycleCallbacks: {  }

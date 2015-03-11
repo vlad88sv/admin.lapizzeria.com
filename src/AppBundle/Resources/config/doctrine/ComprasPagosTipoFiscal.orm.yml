@@ -1,0 +1,29 @@
+AppBundle\Entity\ComprasPagosTipoFiscal:
+    type: entity
+    table: compras_pagos_tipo_fiscal
+    indexes:
+        activo:
+            columns:
+                - activo
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        activo:
+            type: boolean
+            nullable: false
+            comment: ''
+            default: '1'
+    lifecycleCallbacks: {  }

@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+
+{% block page_sub_header %}Compras: lista de proveedores{% endblock %}
+{% block body -%}
+    {% if (entities is defined and entities|length == 0) %}
+        <div class="alert alert-info" role="alert">
+            No hay ningún proveedor ingresado.
+            <a href="{{ path('compras_proveedores_new') }}">
+                Agregar uno
+            </a>
+        </div>
+    {% endif %}
+    
+    <table class="records_list table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre proveedor</th>
+                <th>Nombre contacto</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Comentarios</th>
+                <th>Activo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('compras_proveedores_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.contacto }}</td>
+                <td>{{ entity.telefono }}</td>
+                <td>{{ entity.direccion }}</td>
+                <td>{{ entity.comentarios }}</td>
+                <td>{{ entity.activo ? 'Si' : 'No' }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('compras_proveedores_show', { 'id': entity.id }) }}">ver</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('compras_proveedores_edit', { 'id': entity.id }) }}">editar</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a  class="btn btn-sm btn-primary" href="{{ path('compras_proveedores_new') }}">
+                Agregar un proveedor
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

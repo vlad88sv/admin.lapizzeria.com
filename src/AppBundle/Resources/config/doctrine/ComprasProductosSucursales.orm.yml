@@ -1,0 +1,39 @@
+AppBundle\Entity\ComprasProductosSucursales:
+    type: entity
+    table: compras_productos_sucursales
+    indexes:
+        FK_cps_sucursal:
+            columns:
+                - sucursal_id
+        FK_cps_producto:
+            columns:
+                - producto_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        producto:
+            targetEntity: ComprasProductos
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                producto_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        sucursal:
+            targetEntity: Sucursales
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                sucursal_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block page_sub_header %}Compras: nuevo producto{% endblock %}
+
+{% block body -%}
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('compras_productos') }}">
+            Regresar a la lista de productos
+        </a>
+    </li>
+</ul>
+{% endblock %}

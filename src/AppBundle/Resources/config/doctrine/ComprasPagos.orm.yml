@@ -1,0 +1,142 @@
+AppBundle\Entity\ComprasPagos:
+    type: entity
+    table: compras_pagos
+    indexes:
+        FK_forma:
+            columns:
+                - forma_pago_id
+        FK_tipo:
+            columns:
+                - tipo_fiscal_id
+        FK_validado_por:
+            columns:
+                - validado_por_id
+        FK_creado_por:
+            columns:
+                - creado_por_id
+        FK_tipo_fiscal_interno:
+            columns:
+                - numero_fiscal_interno
+        FK_forma_pago_interna:
+            columns:
+                - forma_pago_interna_id
+        numero_comprobante:
+            columns:
+                - numero_comprobante
+        numero_fiscal:
+            columns:
+                - numero_fiscal
+        monto:
+            columns:
+                - monto
+        FK_cp_tipo_fiscal_int:
+            columns:
+                - tipo_fiscal_interno_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        monto:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 2
+            comment: ''
+        numeroFiscal:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: numero_fiscal
+        creadoPorDt:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: creado_por_dt
+        validadoPorDt:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: validado_por_dt
+        comentario:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        numeroFiscalInterno:
+            type: integer
+            nullable: true
+            unsigned: true
+            comment: ''
+            column: numero_fiscal_interno
+        numeroComprobante:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: numero_comprobante
+    manyToOne:
+        creadoPor:
+            targetEntity: Empleados
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                creado_por_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        formaPago:
+            targetEntity: ComprasPagosFormas
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                forma_pago_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        formaPagoInterna:
+            targetEntity: ComprasPagosFormas
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                forma_pago_interna_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        tipoFiscalInterno:
+            targetEntity: ComprasPagosTipoFiscal
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tipo_fiscal_interno_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        tipoFiscal:
+            targetEntity: ComprasPagosTipoFiscal
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tipo_fiscal_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        validadoPor:
+            targetEntity: Empleados
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                validado_por_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

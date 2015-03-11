@@ -1,0 +1,30 @@
+compras_proveedores:
+    path:     /
+    defaults: { _controller: "AppBundle:compras/ComprasProveedores:index" }
+
+compras_proveedores_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:compras/ComprasProveedores:show" }
+
+compras_proveedores_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:compras/ComprasProveedores:new" }
+
+compras_proveedores_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:compras/ComprasProveedores:create" }
+    requirements: { _method: post }
+
+compras_proveedores_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:compras/ComprasProveedores:edit" }
+
+compras_proveedores_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:compras/ComprasProveedores:update" }
+    requirements: { _method: post|put }
+
+compras_proveedores_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:compras/ComprasProveedores:delete" }
+    requirements: { _method: post|delete }
