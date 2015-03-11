@@ -1,0 +1,51 @@
+<ul class="nav" id="side-menu">
+    <li class="sidebar-search">
+        <div class="input-group custom-search-form">
+            <input type="text" class="form-control" placeholder="Búscar">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+        <!-- /input-group -->
+    </li>
+    <li>
+        <a href="{{ path("homepage") }}"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
+    </li>
+    <li>
+        <a href="{{ path("homepage") }}"><i class="fa fa-users fa-fw"></i> Empleados</a>
+    </li>
+    <li>
+        <a href="{{ path("homepage") }}"><i class="fa fa-cutlery fa-fw"></i> Sucursales</a>
+    </li>
+
+    <li>
+        <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Compras<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li><a href="{{ path("homepage", {id : 3}) }}">Ordenes de compra</a></li>
+            <li><a href="{{ path("homepage", {id : 2}) }}">Proveedores</a></li>
+            <li><a href="{{ path("homepage", {id : 3}) }}">Productos</a></li>
+
+        </ul>
+    </li>
+    <li>
+        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Planilla<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li><a href="{{ path("homepage", {id : 3}) }}">Dashboard</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#"><i class="fa fa-database fa-fw"></i> Datos<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li><a href="{{ path("homepage", {id : 3}) }}">Productos</a></li>
+            <li><a href="{{ path("homepage", {id : 2}) }}">Cupones</a></li>
+            <li><a href="{{ path("homepage", {id : 3}) }}">Tarjetas VIP</a></li>
+
+        </ul>
+    </li>
+
+    <li>
+        <a href="{{ path("homepage") }}"><i class="fa fa-wrench fa-fw"></i> Opciones</a>
+    </li>
+</ul>
