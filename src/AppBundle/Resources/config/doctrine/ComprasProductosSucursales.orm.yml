@@ -17,6 +17,15 @@ AppBundle\Entity\ComprasProductosSucursales:
             id: true
             generator:
                 strategy: IDENTITY
+    fields:
+        cantidadPromedio:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 2
+            comment: ''
+            column: cantidad_promedio
+        
     manyToOne:
         producto:
             targetEntity: ComprasProductos

@@ -3,7 +3,7 @@
 {% block page_sub_header %}Compras: lista de unidades{% endblock %}
 
 {% block body -%}
-    
+
     {% if (entities is defined and entities|length == 0) %}
         <div class="alert alert-info" role="alert">
             No hay ninguna unidad ingresada.
@@ -12,6 +12,12 @@
             </a>
         </div>
     {% endif %}
+
+    <p>
+        <a class="btn btn-primary" href="{{ path('compras_productos_unidades_new') }}">
+            Agregar nueva unidad
+        </a>
+    </p>
     
     <table class="records_list table table-hover table-responsive table-striped">
         <thead>
@@ -25,33 +31,25 @@
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('compras_productos_unidades_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.abreviatura }}</td>
-                <td>{{ entity.nombreSingular }}</td>
-                <td>{{ entity.nombrePlural }}</td>
-                <td>{{ entity.activo }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('compras_productos_unidades_show', { 'id': entity.id }) }}">ver</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('compras_productos_unidades_edit', { 'id': entity.id }) }}">editar</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('compras_productos_unidades_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.abreviatura }}</td>
+                    <td>{{ entity.nombreSingular }}</td>
+                    <td>{{ entity.nombrePlural }}</td>
+                    <td>{{ entity.activo }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('compras_productos_unidades_show', { 'id': entity.id }) }}">ver</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('compras_productos_unidades_edit', { 'id': entity.id }) }}">editar</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('compras_productos_unidades_new') }}">
-                Agregar nueva unidad
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+{% endblock %}

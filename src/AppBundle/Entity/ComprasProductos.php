@@ -236,4 +236,32 @@ class ComprasProductos
     {
         $this->actualizadoDt = new \DateTime();
     }
+    /**
+     * @var boolean
+     */
+    private $foto;
+
+
+    /**
+     * Set foto
+     *
+     * @param boolean $foto
+     * @return ComprasProductos
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+
+        return $this;
+    }
+
+    /**
+     * Get foto
+     *
+     * @return boolean 
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
 }

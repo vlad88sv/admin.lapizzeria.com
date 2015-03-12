@@ -5,13 +5,14 @@
 {% block body -%}
 
     {{ form(edit_form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a class="btn btn-sm btn-primary" href="{{ path('compras_productos') }}">
-            Regresar a la lista
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <table class="table table-condensed">
+        <tr>
+            <td class="col-md-6">
+                <a class="btn btn-default" href="{{ path('compras_productos_unidades') }}">
+                    Regresar a la lista
+                </a>
+            </td>
+            <td class="col-md-6 text-right">{{ form(delete_form) }}</td>
+        </tr>
+    </table>
 {% endblock %}

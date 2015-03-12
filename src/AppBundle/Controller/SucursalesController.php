@@ -1,41 +1,41 @@
 <?php
 
-namespace AppBundle\Controller\compras;
+namespace AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use AppBundle\Entity\ComprasProductos;
-use AppBundle\Form\ComprasProductosType;
+use AppBundle\Entity\Sucursales;
+use AppBundle\Form\SucursalesType;
 
 /**
- * ComprasProductos controller.
+ * Sucursales controller.
  *
  */
-class ComprasProductosController extends Controller
+class SucursalesController extends Controller
 {
 
     /**
-     * Lists all ComprasProductos entities.
+     * Lists all Sucursales entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:ComprasProductos')->findAll();
+        $entities = $em->getRepository('AppBundle:Sucursales')->findAll();
 
-        return $this->render('AppBundle:ComprasProductos:index.html.twig', array(
+        return $this->render('AppBundle:Sucursales:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new ComprasProductos entity.
+     * Creates a new Sucursales entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new ComprasProductos();
+        $entity = new Sucursales();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -44,26 +44,26 @@ class ComprasProductosController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('compras_productos_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('sucursales_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('AppBundle:ComprasProductos:new.html.twig', array(
+        return $this->render('AppBundle:Sucursales:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a ComprasProductos entity.
+     * Creates a form to create a Sucursales entity.
      *
-     * @param ComprasProductos $entity The entity
+     * @param Sucursales $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(ComprasProductos $entity)
+    private function createCreateForm(Sucursales $entity)
     {
-        $form = $this->createForm(new ComprasProductosType(), $entity, array(
-            'action' => $this->generateUrl('compras_productos_create'),
+        $form = $this->createForm(new SucursalesType(), $entity, array(
+            'action' => $this->generateUrl('sucursales_create'),
             'method' => 'POST',
         ));
 
@@ -73,60 +73,60 @@ class ComprasProductosController extends Controller
     }
 
     /**
-     * Displays a form to create a new ComprasProductos entity.
+     * Displays a form to create a new Sucursales entity.
      *
      */
     public function newAction()
     {
-        $entity = new ComprasProductos();
+        $entity = new Sucursales();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('AppBundle:ComprasProductos:new.html.twig', array(
+        return $this->render('AppBundle:Sucursales:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a ComprasProductos entity.
+     * Finds and displays a Sucursales entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:ComprasProductos')->find($id);
+        $entity = $em->getRepository('AppBundle:Sucursales')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find ComprasProductos entity.');
+            throw $this->createNotFoundException('Unable to find Sucursales entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('AppBundle:ComprasProductos:show.html.twig', array(
+        return $this->render('AppBundle:Sucursales:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing ComprasProductos entity.
+     * Displays a form to edit an existing Sucursales entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:ComprasProductos')->find($id);
+        $entity = $em->getRepository('AppBundle:Sucursales')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find ComprasProductos entity.');
+            throw $this->createNotFoundException('Unable to find Sucursales entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('AppBundle:ComprasProductos:edit.html.twig', array(
+        return $this->render('AppBundle:Sucursales:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -134,16 +134,16 @@ class ComprasProductosController extends Controller
     }
 
     /**
-    * Creates a form to edit a ComprasProductos entity.
+    * Creates a form to edit a Sucursales entity.
     *
-    * @param ComprasProductos $entity The entity
+    * @param Sucursales $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(ComprasProductos $entity)
+    private function createEditForm(Sucursales $entity)
     {
-        $form = $this->createForm(new ComprasProductosType(), $entity, array(
-            'action' => $this->generateUrl('compras_productos_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new SucursalesType(), $entity, array(
+            'action' => $this->generateUrl('sucursales_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -152,17 +152,17 @@ class ComprasProductosController extends Controller
         return $form;
     }
     /**
-     * Edits an existing ComprasProductos entity.
+     * Edits an existing Sucursales entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:ComprasProductos')->find($id);
+        $entity = $em->getRepository('AppBundle:Sucursales')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find ComprasProductos entity.');
+            throw $this->createNotFoundException('Unable to find Sucursales entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -172,17 +172,17 @@ class ComprasProductosController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('compras_productos_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('sucursales_edit', array('id' => $id)));
         }
 
-        return $this->render('AppBundle:ComprasProductos:edit.html.twig', array(
+        return $this->render('AppBundle:Sucursales:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a ComprasProductos entity.
+     * Deletes a Sucursales entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -192,21 +192,21 @@ class ComprasProductosController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:ComprasProductos')->find($id);
+            $entity = $em->getRepository('AppBundle:Sucursales')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find ComprasProductos entity.');
+                throw $this->createNotFoundException('Unable to find Sucursales entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('compras_productos'));
+        return $this->redirect($this->generateUrl('sucursales'));
     }
 
     /**
-     * Creates a form to delete a ComprasProductos entity by id.
+     * Creates a form to delete a Sucursales entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -215,7 +215,7 @@ class ComprasProductosController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('compras_productos_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('sucursales_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Borrar'))
             ->getForm()

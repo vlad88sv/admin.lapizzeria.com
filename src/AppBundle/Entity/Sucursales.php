@@ -17,22 +17,22 @@ class Sucursales
     /**
      * @var string
      */
-    private $nombre;
+    private $nombre = '';
 
     /**
      * @var boolean
      */
-    private $telefono;
+    private $telefono = '';
 
     /**
      * @var boolean
      */
-    private $direccion;
+    private $direccion = '';
 
     /**
      * @var boolean
      */
-    private $activo;
+    private $activo = true;
 
 
     /**

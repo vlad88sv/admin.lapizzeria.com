@@ -22,15 +22,16 @@ AppBundle\Entity\Sucursales:
             fixed: false
             comment: ''
         telefono:
-            type: boolean
+            type: string
             nullable: false
+            length: 50
             comment: ''
-            default: '1'
+            default: ''
         direccion:
-            type: boolean
+            type: text
             nullable: false
             comment: ''
-            default: '1'
+            default: ''
         activo:
             type: boolean
             nullable: false

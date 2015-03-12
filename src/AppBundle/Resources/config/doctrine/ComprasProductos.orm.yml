@@ -33,6 +33,11 @@ AppBundle\Entity\ComprasProductos:
             length: 255
             fixed: false
             comment: ''
+        foto:
+            type: boolean
+            nullable: false
+            comment: ''
+            default: '1'
         activo:
             type: boolean
             nullable: false

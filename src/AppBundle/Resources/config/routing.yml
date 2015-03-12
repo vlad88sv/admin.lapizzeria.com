@@ -1,3 +1,7 @@
+app_sucursales:
+    resource: "@AppBundle/Resources/config/routing/sucursales.yml"
+    prefix:   /sucursales
+
 app_compras_productos_unidades:
     resource: "@AppBundle/Resources/config/routing/comprasproductosunidades.yml"
     prefix:   /compras/productos/unidades

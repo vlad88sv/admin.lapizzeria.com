@@ -80,4 +80,32 @@ class ComprasProductosSucursales
     {
         return $this->sucursal;
     }
+    /**
+     * @var string
+     */
+    private $cantidadPromedio;
+
+
+    /**
+     * Set cantidadPromedio
+     *
+     * @param string $cantidadPromedio
+     * @return ComprasProductosSucursales
+     */
+    public function setCantidadPromedio($cantidadPromedio)
+    {
+        $this->cantidadPromedio = $cantidadPromedio;
+
+        return $this;
+    }
+
+    /**
+     * Get cantidadPromedio
+     *
+     * @return string 
+     */
+    public function getCantidadPromedio()
+    {
+        return $this->cantidadPromedio;
+    }
 }
