@@ -18,3 +18,7 @@ app_compras_productos:
     resource: "@AppBundle/Resources/config/routing/comprasproductos.yml"
     prefix:   /compras/productos
 
+app_compras_ingreso:
+    resource: "@AppBundle/Resources/config/routing/comprasingreso.yml"
+    prefix:   /compras/ingreso
+

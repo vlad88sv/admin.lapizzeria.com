@@ -19,6 +19,10 @@ compras_productos_edit:
     path:     /{id}/edit
     defaults: { _controller: "AppBundle:compras/ComprasProductos:edit" }
 
+compras_productos_sucursales:
+    path:     /{producto}/sucursales
+    defaults: { _controller: "AppBundle:compras/ComprasProductosSucursales:index" }
+
 compras_productos_update:
     path:     /{id}/update
     defaults: { _controller: "AppBundle:compras/ComprasProductos:update" }

@@ -221,4 +221,25 @@ class ComprasProductosController extends Controller
             ->getForm()
         ;
     }
+
+    public function sucursalesAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:ComprasProductos')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find ComprasProductos entity.');
+        }
+
+        $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('AppBundle:ComprasProductos:edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+   
 }

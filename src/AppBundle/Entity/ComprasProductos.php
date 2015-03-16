@@ -239,7 +239,7 @@ class ComprasProductos
     /**
      * @var boolean
      */
-    private $foto;
+    private $foto = 0;
 
 
     /**

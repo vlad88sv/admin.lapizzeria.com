@@ -24,4 +24,60 @@ class ComprasOrdenes
     {
         return $this->id;
     }
+    /**
+     * @var \AppBundle\Entity\Sucursales
+     */
+    private $orden;
+
+
+    /**
+     * Set orden
+     *
+     * @param \AppBundle\Entity\Sucursales $orden
+     * @return ComprasOrdenes
+     */
+    public function setOrden(\AppBundle\Entity\Sucursales $orden = null)
+    {
+        $this->orden = $orden;
+
+        return $this;
+    }
+
+    /**
+     * Get orden
+     *
+     * @return \AppBundle\Entity\Sucursales 
+     */
+    public function getOrden()
+    {
+        return $this->orden;
+    }
+    /**
+     * @var \DateTime
+     */
+    private $ingresadoDt;
+
+
+    /**
+     * Set ingresadoDt
+     *
+     * @param \DateTime $ingresadoDt
+     * @return ComprasOrdenes
+     */
+    public function setIngresadoDt($ingresadoDt)
+    {
+        $this->ingresadoDt = $ingresadoDt;
+
+        return $this;
+    }
+
+    /**
+     * Get ingresadoDt
+     *
+     * @return \DateTime 
+     */
+    public function getIngresadoDt()
+    {
+        return $this->ingresadoDt;
+    }
 }

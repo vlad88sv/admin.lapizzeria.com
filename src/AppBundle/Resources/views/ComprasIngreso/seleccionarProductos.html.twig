@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+{% block page_sub_header "Paso 2 - Productos" %}
+{% block body %}
+    <p>Ingresar el pedido para <i>{{ data.sucursal.nombre }}</i></p>
+    <div class="form-inline">
+        <div class="form-group">
+            <label class="sr-only" for="cmbProductos">Producto</label>
+            <select class="form-control" id="cmbProductos" style="width:250px;">
+                <option value="">Seleccione un producto</option>
+                {% for producto in data.productos %}
+                    <option value="{{ producto.producto.id }}">{{ producto.producto.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="txtCantidad">Cantidad</label>
+            <div class="input-group">
+                <input id="txtCantidad" type="number" class="form-control" value="0" style="width:125px;" />
+                <div id="unidad" class="input-group-addon"></div>
+            </div>
+        </div>
+        <button id="btnAgregarProducto" class="btn btn-primary">Agregar</button>
+    </div>
+    <hr />
+    <table id="tblProductos" class="table table-bordered table-condensed table-hover table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Producto ingresados</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <hr />
+    <button id="btnEnviarLista" class="btn btn-primary">Enviar lista</button>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        var aDictProductos = {};
+        {% for producto in data.productos -%}
+        aDictProductos['id_{{ producto.producto.id }}'] = {nombre: "{{ producto.producto.nombre }}", unidad: "{{ producto.producto.unidad.abreviatura }}", cant_promedio: "{{ producto.cantidadPromedio }}"};
+        {% endfor %}
+            
+        var aProductos = [];
+
+        function agregarProducto() {
+            var producto = {};
+            producto.id = $("#cmbProductos").val();
+            producto.cantidad = $("#txtCantidad").val();
+            producto.nombre = $("#cmbProductos option:selected").text();
+            aProductos.push(producto);
+            renderizarDatos();
+        }
+
+        function renderizarDatos() {
+            var tblProductos = $("#tblProductos tbody");
+            var detalle_producto = '';
+            
+            tblProductos.empty();
+            
+            for(var producto in aProductos) {
+                detalle_producto = '';
+                detalle_producto += (parseFloat(aProductos[producto].cantidad) === 0.00 ? '*' + aDictProductos['id_' + aProductos[producto].id].cant_promedio : aProductos[producto].cantidad);
+                detalle_producto += aDictProductos['id_'+aProductos[producto].id].unidad + ' de ';
+                detalle_producto += aProductos[producto].nombre;
+                tblProductos.append('<tr><td>'+detalle_producto+'</td></tr>');
+            }
+            
+        }
+        
+        function actualizarUnidad(){
+            $("#unidad").html(aDictProductos['id_'+$(this).val()].unidad);
+        }
+
+        $(function () {
+            $("#cmbProductos").chosen();
+            $("#cmbProductos").change(actualizarUnidad);
+            $("#btnAgregarProducto").click(agregarProducto);
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+{% block page_sub_header %}
+    Detalle por sucursal para producto <i>{{ data.p.nombre}}</i>
+{% endblock %}
+{% block body %}
+    <p>Ingrese la cantidad de <i>{{ data.p.unidad.nombrePlural}}</i> promedio por compra para cada sucursal.</p>
+    
+    {% if (data.flag.guardado) %}
+        <div class="alert alert-success" role="alert">Las cantidades fueron guardadas exitosamente.</div>
+    {% endif %}
+    
+    <form  method="post" class="form-horizontal">
+        <input name="producto_id" type="hidden" value="{{ data.p.id }}" />
+        
+        {% for sucursal in data.cps %}
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{ sucursal.s_nombre }}</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input name="cantidad[{{sucursal.s_id}}]" class="form-control" type="number" value="{{ sucursal.ps_cantidadPromedio|default(0.00) }}" />
+                        <div class="input-group-addon">{{ data.p.unidad.nombrePlural}}</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <input class="btn btn-primary" type="submit" value="Guardar" />
+    </form>
+{% endblock %}

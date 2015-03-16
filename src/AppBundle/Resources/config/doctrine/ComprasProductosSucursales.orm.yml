@@ -8,6 +8,10 @@ AppBundle\Entity\ComprasProductosSucursales:
         FK_cps_producto:
             columns:
                 - producto_id
+    uniqueConstraints:
+        idx_producto_sucursal:
+          columns: [ producto_id, sucursal_id ]
+
     id:
         id:
             type: integer

@@ -108,4 +108,88 @@ class ComprasOrdenesProductos
     {
         return $this->producto;
     }
+    /**
+     * @var string
+     */
+    private $cantidad_sugerida;
+
+    /**
+     * @var string
+     */
+    private $cantidad_solicitada;
+
+    /**
+     * @var string
+     */
+    private $cantidad_aprobada;
+
+
+    /**
+     * Set cantidad_sugerida
+     *
+     * @param string $cantidadSugerida
+     * @return ComprasOrdenesProductos
+     */
+    public function setCantidadSugerida($cantidadSugerida)
+    {
+        $this->cantidad_sugerida = $cantidadSugerida;
+
+        return $this;
+    }
+
+    /**
+     * Get cantidad_sugerida
+     *
+     * @return string 
+     */
+    public function getCantidadSugerida()
+    {
+        return $this->cantidad_sugerida;
+    }
+
+    /**
+     * Set cantidad_solicitada
+     *
+     * @param string $cantidadSolicitada
+     * @return ComprasOrdenesProductos
+     */
+    public function setCantidadSolicitada($cantidadSolicitada)
+    {
+        $this->cantidad_solicitada = $cantidadSolicitada;
+
+        return $this;
+    }
+
+    /**
+     * Get cantidad_solicitada
+     *
+     * @return string 
+     */
+    public function getCantidadSolicitada()
+    {
+        return $this->cantidad_solicitada;
+    }
+
+    /**
+     * Set cantidad_aprobada
+     *
+     * @param string $cantidadAprobada
+     * @return ComprasOrdenesProductos
+     */
+    public function setCantidadAprobada($cantidadAprobada)
+    {
+        $this->cantidad_aprobada = $cantidadAprobada;
+
+        return $this;
+    }
+
+    /**
+     * Get cantidad_aprobada
+     *
+     * @return string 
+     */
+    public function getCantidadAprobada()
+    {
+        return $this->cantidad_aprobada;
+    }
 }

@@ -18,7 +18,19 @@ AppBundle\Entity\ComprasOrdenesProductos:
             generator:
                 strategy: IDENTITY
     fields:
-        cantidad:
+        cantidad_sugerida:
+            type: decimal
+            nullable: false
+            precision: 8
+            scale: 2
+            comment: ''
+        cantidad_solicitada:
+            type: decimal
+            nullable: false
+            precision: 8
+            scale: 2
+            comment: ''
+        cantidad_aprobada:
             type: decimal
             nullable: false
             precision: 8

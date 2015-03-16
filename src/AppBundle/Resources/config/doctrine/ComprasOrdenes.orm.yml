@@ -10,4 +10,20 @@ AppBundle\Entity\ComprasOrdenes:
             id: true
             generator:
                 strategy: IDENTITY
+    fields:
+        ingresadoDt:
+            type: datetime
+            nullable: false
+            column: ingresado_dt
+            
+    manyToOne:
+        orden:
+            targetEntity: Sucursales
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                orden_id:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }
