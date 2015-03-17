@@ -8,6 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\ComprasProductos;
 use AppBundle\Form\ComprasProductosType;
 
+use AppBundle\Entity\ComprasOrdenesProductos;
+use AppBundle\Entity\ComprasOrdenes;
+
 /**
  * ComprasProductos controller.
  *
@@ -40,5 +43,42 @@ class ComprasIngresoController extends Controller
                 ->getResult();
         
         return $this->render('AppBundle:ComprasIngreso:seleccionarProductos.html.twig', ['data' => $data]);
+    }
+    
+    public function guardarProductosAction(Request $request) {
+        $data = [];
+        
+        if ($request->getMethod() != 'POST') {
+            return $this->redirectToRoute('compras_ingreso__seleccionar_sucursal');
+        }
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $dOrden = new ComprasOrdenes();
+        $dOrden->setIngresadoDt(new \DateTime());
+        $dOrden->setSucursal($em->getRepository('AppBundle:ComprasProductos')->find($request->get('sucursal')));
+        $em->persist($dOrden);
+        $em->flush();
+        
+        foreach ($request->get('producto') as $producto => $cantidad) {
+            $dOrdenProducto = new ComprasOrdenesProductos();
+            $dProducto = $em->getRepository('AppBundle:ComprasProductos')->find($producto);
+            $dProductoSucursal = $em->getRepository('AppBundle:ComprasProductosSucursales')->findOneBy(['sucursal' => $request->get('sucursal'), 'producto' => $dProducto->getId()]);
+            $cantidad = (float) $cantidad;
+            
+            $dOrdenProducto->setOrden($dOrden);
+            $dOrdenProducto->setProducto($dProducto);
+            $dOrdenProducto->setCantidadSugerida ($dProductoSucursal->getCantidadPromedio());
+            $dOrdenProducto->setCantidadSolicitada ($cantidad);
+            $dOrdenProducto->setCantidadAprobada(0.00);
+            $dOrdenProducto->setCantidad(0.00);
+            $dOrdenProducto->setUnidad($dProducto->getUnidad());
+            
+            $em->persist($dOrdenProducto);
+        }
+        
+        $em->flush();
+        
+        return $this->render('AppBundle:ComprasIngreso:GuardarProductos.html.twig', ['data' => $data]);
     }
 }

@@ -2,6 +2,10 @@ compras_ingreso__seleccionar_sucursal:
     path:     /
     defaults: { _controller: "AppBundle:compras/ComprasIngreso:seleccionarSucursal" }
 
+compras_ingreso__guardar_productos:
+    path:     /guardar/productos
+    defaults: { _controller: "AppBundle:compras/ComprasIngreso:guardarProductos" }
+
 compras_ingreso__seleccionar_productos:
     path:     /{sucursal}/productos
     defaults: { _controller: "AppBundle:compras/ComprasIngreso:seleccionarProductos" }

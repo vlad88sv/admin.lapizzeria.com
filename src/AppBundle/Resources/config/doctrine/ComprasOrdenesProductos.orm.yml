@@ -36,7 +36,22 @@ AppBundle\Entity\ComprasOrdenesProductos:
             precision: 8
             scale: 2
             comment: ''
+        cantidad:
+            type: decimal
+            nullable: false
+            precision: 8
+            scale: 2
+            comment: ''
     manyToOne:
+        orden:
+            targetEntity: ComprasOrdenes
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                orden_id:
+                    referencedColumnName: id
+            orphanRemoval: false
         unidad:
             targetEntity: ComprasProductosUnidades
             cascade: {  }

@@ -192,4 +192,32 @@ class ComprasOrdenesProductos
     {
         return $this->cantidad_aprobada;
     }
+    /**
+     * @var \AppBundle\Entity\ComprasOrdenes
+     */
+    private $orden;
+
+
+    /**
+     * Set orden
+     *
+     * @param \AppBundle\Entity\ComprasOrdenes $orden
+     * @return ComprasOrdenesProductos
+     */
+    public function setOrden(\AppBundle\Entity\ComprasOrdenes $orden = null)
+    {
+        $this->orden = $orden;
+
+        return $this;
+    }
+
+    /**
+     * Get orden
+     *
+     * @return \AppBundle\Entity\ComprasOrdenes 
+     */
+    public function getOrden()
+    {
+        return $this->orden;
+    }
 }

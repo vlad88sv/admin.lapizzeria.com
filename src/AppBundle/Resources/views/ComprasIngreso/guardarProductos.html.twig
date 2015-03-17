@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+{% block page_sub_header "Compra ingresada." %}
+{% block body %}
+    <p>La orden compra ha sido ingresada exitosamente.</p>
+    <p><a href="{{ path('compras_ingreso__seleccionar_sucursal') }}">Ingresar otra orden de compra</a></p>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        $(function () {
+        });
+    </script>
+{% endblock %}
