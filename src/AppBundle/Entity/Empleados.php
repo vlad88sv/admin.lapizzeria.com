@@ -3,11 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Empleados
  */
-class Empleados
+class Empleados implements UserInterface, \Serializable
 {
     /**
      * @var integer
@@ -192,4 +193,53 @@ class Empleados
     {
         return $this->supervisor;
     }
+
+    
+    // UserInterface:
+    
+    public function getUsername()
+    {
+        return $this->usuario;
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function getPassword()
+    {
+        return $this->clave;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
+        $this->clave = '';
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->usuario,
+            $this->clave
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->usuario,
+            $this->clave
+        ) = unserialize($serialized);
+    }
+   
 }

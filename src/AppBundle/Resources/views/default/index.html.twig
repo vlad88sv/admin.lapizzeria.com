@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block page_sub_header %}Inicio{% endblock %}
+
+{% block body %}
+    <h1>Ordenes de compra abiertas</h1>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Sucursal</th>
+                <th>Fecha ingreso</th>                
+                <th>Ingresada por</th>
+                <th>Estado</th>
+                <th>Ultima actualización</th>
+                <th>Actualizado por</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for orden in data.ordenes %}
+                <tr>
+                    <td>{{ orden.orden.id }}</td>
+                    <td>{{ orden.orden.sucursal.nombre }}</td>
+                    <td>{{ orden.orden.ingresadoDt.date }}</td>                    
+                    <td>{{ orden.orden.creadoPor.nombre }}</td>
+                    <td>{{ orden.orden.estado.estado }}</td>
+                    <td>{{ orden.creadoDt.date }}</td>
+                    <td>{{ orden.creadoPor.nombre }}</td>
+                    <td><a href="{{ path('compras_ordenes_ver', {orden : orden.orden.id }) }}">Ver</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

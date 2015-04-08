@@ -17,6 +17,15 @@ AppBundle\Entity\ComprasOrdenes:
             column: ingresado_dt
             
     manyToOne:
+        creadoPor:
+            targetEntity: Empleados
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                creado_por_id:
+                    referencedColumnName: id
+            orphanRemoval: false
         sucursal:
             targetEntity: Sucursales
             cascade: {  }
@@ -24,6 +33,15 @@ AppBundle\Entity\ComprasOrdenes:
             inversedBy: null
             joinColumns:
                 sucursal_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        estado:
+            targetEntity: ComprasOrdenesEstados
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                estado_id:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

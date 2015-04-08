@@ -136,4 +136,69 @@ class ComprasOrdenesComentarios
     {
         return $this->estado;
     }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedValue()
+    {
+        $this->creadoDt = new \DateTime();
+    }
+    
+    /**
+     * @var \AppBundle\Entity\ComprasOrdenes
+     */
+    private $orden;
+
+
+    /**
+     * Set orden
+     *
+     * @param \AppBundle\Entity\ComprasOrdenes $orden
+     * @return ComprasOrdenesComentarios
+     */
+    public function setOrden(\AppBundle\Entity\ComprasOrdenes $orden = null)
+    {
+        $this->orden = $orden;
+
+        return $this;
+    }
+
+    /**
+     * Get orden
+     *
+     * @return \AppBundle\Entity\ComprasOrdenes 
+     */
+    public function getOrden()
+    {
+        return $this->orden;
+    }
+    /**
+     * @var \AppBundle\Entity\Empleados
+     */
+    private $creadoPor;
+
+
+    /**
+     * Set creadoPor
+     *
+     * @param \AppBundle\Entity\Empleados $creadoPor
+     * @return ComprasOrdenesComentarios
+     */
+    public function setCreadoPor(\AppBundle\Entity\Empleados $creadoPor = null)
+    {
+        $this->creadoPor = $creadoPor;
+
+        return $this;
+    }
+
+    /**
+     * Get creadoPor
+     *
+     * @return \AppBundle\Entity\Empleados 
+     */
+    public function getCreadoPor()
+    {
+        return $this->creadoPor;
+    }
 }

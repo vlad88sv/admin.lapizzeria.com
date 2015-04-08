@@ -1,15 +1,3 @@
-app_sucursales:
-    resource: "@AppBundle/Resources/config/routing/sucursales.yml"
-    prefix:   /sucursales
-
-app_compras_productos_unidades:
-    resource: "@AppBundle/Resources/config/routing/comprasproductosunidades.yml"
-    prefix:   /compras/productos/unidades
-
-app_compras_proveedores:
-    resource: "@AppBundle/Resources/config/routing/comprasproveedores.yml"
-    prefix:   /compras/proveedores
-
 homepage:
     path:     /
     defaults: { _controller: "AppBundle:Default:index" }
@@ -21,4 +9,19 @@ app_compras_productos:
 app_compras_ingreso:
     resource: "@AppBundle/Resources/config/routing/comprasingreso.yml"
     prefix:   /compras/ingreso
+    
+app_compras_ordenes:
+    resource: "@AppBundle/Resources/config/routing/comprasordenes.yml"
+    prefix:   /compras/ordenes
+    
+app_sucursales:
+    resource: "@AppBundle/Resources/config/routing/sucursales.yml"
+    prefix:   /sucursales
 
+app_compras_productos_unidades:
+    resource: "@AppBundle/Resources/config/routing/comprasproductosunidades.yml"
+    prefix:   /compras/productos/unidades
+
+app_compras_proveedores:
+    resource: "@AppBundle/Resources/config/routing/comprasproveedores.yml"
+    prefix:   /compras/proveedores

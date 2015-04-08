@@ -1,0 +1,27 @@
+<h1>Nueva orden de compra</h1>
+<p>Se ha ingresado una orden de compra al sistema.</p>
+<p>
+    <a href="{{ url('compras_ordenes_ver', {orden : orden.orden.id }) }}">Para visualizarla siga este enlace</a>
+</p>
+<hr />
+<table class="table table-condensed">
+    <tr>
+    <tbody>
+        <tr>
+            <th style="text-align:right;">Sucursal</th>
+            <td style="width:60%">{{ orden.orden.sucursal.nombre }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:right;">Estado</th>
+            <td style="width:60%">{{ orden.orden.estado.estado }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:right;">Ingresada por</th>
+            <td style="width:60%">{{ orden.orden.creadoPor.nombre }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:right;">Fecha de ingreso</th>
+            <td style="width:60%">{{ orden.orden.ingresadoDt.date }}</td>
+        </tr>
+    </tr>
+</table>

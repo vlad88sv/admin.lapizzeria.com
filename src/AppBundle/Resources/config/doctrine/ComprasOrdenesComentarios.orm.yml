@@ -38,6 +38,24 @@ AppBundle\Entity\ComprasOrdenesComentarios:
             comment: ''
             default: '1'
     manyToOne:
+        creadoPor:
+            targetEntity: Empleados
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                creado_por_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        orden:
+            targetEntity: ComprasOrdenes
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                orden_id:
+                    referencedColumnName: id
+            orphanRemoval: false
         estado:
             targetEntity: ComprasOrdenesEstados
             cascade: {  }
@@ -47,4 +65,5 @@ AppBundle\Entity\ComprasOrdenesComentarios:
                 estado_id:
                     referencedColumnName: id
             orphanRemoval: false
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks:
+         prePersist: [setCreatedValue]

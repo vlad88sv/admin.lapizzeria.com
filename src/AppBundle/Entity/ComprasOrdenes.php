@@ -81,4 +81,60 @@ class ComprasOrdenes
     {
         return $this->sucursal;
     }
+    /**
+     * @var \AppBundle\Entity\ComprasOrdenesEstados
+     */
+    private $estado;
+
+
+    /**
+     * Set estado
+     *
+     * @param \AppBundle\Entity\ComprasOrdenesEstados $estado
+     * @return ComprasOrdenes
+     */
+    public function setEstado(\AppBundle\Entity\ComprasOrdenesEstados $estado = null)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return \AppBundle\Entity\ComprasOrdenesEstados 
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+    /**
+     * @var \AppBundle\Entity\Empleados
+     */
+    private $creadoPor;
+
+
+    /**
+     * Set creadoPor
+     *
+     * @param \AppBundle\Entity\Empleados $creadoPor
+     * @return ComprasOrdenes
+     */
+    public function setCreadoPor(\AppBundle\Entity\Empleados $creadoPor = null)
+    {
+        $this->creadoPor = $creadoPor;
+
+        return $this;
+    }
+
+    /**
+     * Get creadoPor
+     *
+     * @return \AppBundle\Entity\Empleados 
+     */
+    public function getCreadoPor()
+    {
+        return $this->creadoPor;
+    }
 }

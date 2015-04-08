@@ -1,0 +1,3 @@
+compras_ordenes_ver:
+    path:     /{orden}
+    defaults: { _controller: "AppBundle:compras/ComprasOrdenes:ver" }
