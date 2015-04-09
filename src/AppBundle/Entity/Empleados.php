@@ -286,4 +286,42 @@ class Empleados implements UserInterface, \Serializable
     public function __toString() {
         return $this->nombre;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $sucursales;
+
+
+    /**
+     * Add sucursales
+     *
+     * @param \AppBundle\Entity\Sucursales $sucursales
+     * @return Empleados
+     */
+    public function addSucursale(\AppBundle\Entity\Sucursales $sucursales)
+    {
+        $this->sucursales[] = $sucursales;
+
+        return $this;
+    }
+
+    /**
+     * Remove sucursales
+     *
+     * @param \AppBundle\Entity\Sucursales $sucursales
+     */
+    public function removeSucursale(\AppBundle\Entity\Sucursales $sucursales)
+    {
+        $this->sucursales->removeElement($sucursales);
+    }
+
+    /**
+     * Get sucursales
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSucursales()
+    {
+        return $this->sucursales;
+    }
 }

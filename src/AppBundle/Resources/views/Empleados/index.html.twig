@@ -1,18 +1,18 @@
 {% extends '::base.html.twig' %}
 
-{% block body -%}
-    <h1>Empleados list</h1>
+{% block page_sub_header %}Lista de empleados{% endblock %}
 
-    <table class="records_list">
+{% block body -%}
+<a class="btn btn-primary" href="{{ path('empleados_new') }}">Crear empleado</a><hr />
+    <table class="records_list table table-hover table-responsive table-striped">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Usuario</th>
-                <th>Clave</th>
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Activo</th>
-                <th>Actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -20,17 +20,16 @@
             <tr>
                 <td><a href="{{ path('empleados_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.usuario }}</td>
-                <td>{{ entity.clave }}</td>
                 <td>{{ entity.nombre }}</td>
                 <td>{{ entity.email }}</td>
                 <td>{{ entity.activo }}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('empleados_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('empleados_show', { 'id': entity.id }) }}">ver</a>
                     </li>
                     <li>
-                        <a href="{{ path('empleados_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('empleados_edit', { 'id': entity.id }) }}">editar</a>
                     </li>
                 </ul>
                 </td>
@@ -39,11 +38,4 @@
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('empleados_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+{% endblock %}

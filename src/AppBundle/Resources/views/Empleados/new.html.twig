@@ -1,15 +1,12 @@
 {% extends '::base.html.twig' %}
 
+{% block page_sub_header %}Nuevo empleado{% endblock %}
+
 {% block body -%}
-    <h1>Empleados creation</h1>
 
     {{ form(form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('empleados') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    <a class="btn btn-primary" href="{{ path('empleados') }}">
+        Regresar a la lista
+    </a>
 {% endblock %}

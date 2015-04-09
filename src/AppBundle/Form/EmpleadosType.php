@@ -22,6 +22,7 @@ class EmpleadosType extends AbstractType
             ->add('activo')
             ->add('supervisor')
             ->add('roles')
+            ->add('sucursales')
         ;
     }
     

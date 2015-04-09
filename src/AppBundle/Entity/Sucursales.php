@@ -136,4 +136,53 @@ class Sucursales
     {
         return $this->activo;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $empleados;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->empleados = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add empleados
+     *
+     * @param \AppBundle\Entity\Empleados $empleados
+     * @return Sucursales
+     */
+    public function addEmpleado(\AppBundle\Entity\Empleados $empleados)
+    {
+        $this->empleados[] = $empleados;
+
+        return $this;
+    }
+
+    /**
+     * Remove empleados
+     *
+     * @param \AppBundle\Entity\Empleados $empleados
+     */
+    public function removeEmpleado(\AppBundle\Entity\Empleados $empleados)
+    {
+        $this->empleados->removeElement($empleados);
+    }
+
+    /**
+     * Get empleados
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmpleados()
+    {
+        return $this->empleados;
+    }
+    
+    public function __toString() {
+        return $this->nombre;
+    }
 }

@@ -71,5 +71,8 @@ AppBundle\Entity\Empleados:
         roles:
           targetEntity: Roles
           inversedBy: empleados
+        sucursales:
+          targetEntity: Sucursales
+          inversedBy: empleados
 
     lifecycleCallbacks: {  }
