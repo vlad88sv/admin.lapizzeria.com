@@ -68,6 +68,9 @@ class ComprasIngresoController extends Controller {
         $dOrdenComentario = new ComprasOrdenesComentarios();
         $dOrdenComentario->setComentario("Orden de compra ingresa vía web");
         $dOrdenComentario->setEstado($estado);
+        $dOrdenComentario->setCreadoPor($this->getUser());
+        $em->persist($dOrdenComentario);
+        $em->flush();
         
         foreach ($request->get('producto') as $producto => $cantidad) {
             $dOrdenProducto = new ComprasOrdenesProductos();
