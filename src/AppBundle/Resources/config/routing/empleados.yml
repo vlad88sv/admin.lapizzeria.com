@@ -1,0 +1,30 @@
+empleados:
+    path:     /
+    defaults: { _controller: "AppBundle:Empleados:index" }
+
+empleados_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Empleados:show" }
+
+empleados_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Empleados:new" }
+
+empleados_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Empleados:create" }
+    requirements: { _method: post }
+
+empleados_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Empleados:edit" }
+
+empleados_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:Empleados:update" }
+    requirements: { _method: post|put }
+
+empleados_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Empleados:delete" }
+    requirements: { _method: post|delete }

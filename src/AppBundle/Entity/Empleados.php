@@ -214,7 +214,13 @@ class Empleados implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        $roles = $this->roles->toArray();
+        
+        if (!in_array('ROLE_USER', $roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+        
+        return $roles;
     }
 
     public function eraseCredentials()
@@ -241,5 +247,43 @@ class Empleados implements UserInterface, \Serializable
             $this->clave
         ) = unserialize($serialized);
     }
-   
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $roles;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add roles
+     *
+     * @param \AppBundle\Entity\Roles $roles
+     * @return Empleados
+     */
+    public function addRole(\AppBundle\Entity\Roles $roles)
+    {
+        $this->roles[] = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Remove roles
+     *
+     * @param \AppBundle\Entity\Roles $roles
+     */
+    public function removeRole(\AppBundle\Entity\Roles $roles)
+    {
+        $this->roles->removeElement($roles);
+    }
+    
+    public function __toString() {
+        return $this->nombre;
+    }
 }

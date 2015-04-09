@@ -3,11 +3,13 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Role\RoleInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Roles
  */
-class Roles
+class Roles implements RoleInterface
 {
     /**
      * @var integer
@@ -64,6 +66,16 @@ class Roles
     }
 
     /**
+     * Get role
+     *
+     * @return string 
+     */
+    public function getRole()
+    {
+        return $this->nombre;
+    }
+
+    /**
      * Set descripcion
      *
      * @param string $descripcion
@@ -107,5 +119,54 @@ class Roles
     public function getActivo()
     {
         return $this->activo;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $empleados;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->empleados = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add empleados
+     *
+     * @param \AppBundle\Entity\Empleados $empleados
+     * @return Roles
+     */
+    public function addEmpleado(\AppBundle\Entity\Empleados $empleados)
+    {
+        $this->empleados[] = $empleados;
+
+        return $this;
+    }
+
+    /**
+     * Remove empleados
+     *
+     * @param \AppBundle\Entity\Empleados $empleados
+     */
+    public function removeEmpleado(\AppBundle\Entity\Empleados $empleados)
+    {
+        $this->empleados->removeElement($empleados);
+    }
+
+    /**
+     * Get empleados
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmpleados()
+    {
+        return $this->empleados;
+    }
+    
+    public function __toString() {
+        return $this->nombre;
     }
 }

@@ -35,4 +35,9 @@ AppBundle\Entity\Roles:
             nullable: false
             comment: ''
             default: '1'
+    manyToMany:
+        empleados:
+          targetEntity: Empleados
+          mappedBy: roles
+          
     lifecycleCallbacks: {  }

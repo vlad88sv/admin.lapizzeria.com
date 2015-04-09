@@ -67,4 +67,9 @@ AppBundle\Entity\Empleados:
                 supervisor_id:
                     referencedColumnName: id
             orphanRemoval: false
+    manyToMany:
+        roles:
+          targetEntity: Roles
+          inversedBy: empleados
+
     lifecycleCallbacks: {  }
