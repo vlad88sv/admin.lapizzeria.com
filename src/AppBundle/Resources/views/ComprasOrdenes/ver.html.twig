@@ -3,31 +3,38 @@
 {% block page_sub_header %}Orden de compra{% endblock %}
 
 {% block body %}
-<table class="table table-condensed">
-    <tr>
-    <tbody>
+    <table class="table table-condensed">
         <tr>
-            <th style="width:15%;text-align:right;">Sucursal</th>
-            <td style="width:85%">{{ data.orden.orden.sucursal.nombre }}</td>
-        </tr>
-        <tr>
-            <th style="width:15%;text-align:right;">Estado</th>
-            <td style="width:85%">{{ data.orden.orden.estado.estado }}</td>
-        </tr>
-        <tr>
-            <th style="width:15%;text-align:right;">Ingresada por</th>
-            <td style="width:85%">{{ data.orden.orden.creadoPor.nombre }}</td>
-        </tr>
-        <tr>
-            <th style="width:15%;text-align:right;">Fecha de ingreso</th>
-            <td style="width:85%">{{ data.orden.orden.ingresadoDt.date }}</td>
-        </tr>
-    </tr>
-</table>
-<hr />
-<h4>Detalle de orden de compra</h4>
-{%- for producto in data.orden.productos -%}
-    <p>{{producto.cantidad}} {{ (producto.cantidad > 1) ? producto.unidad.nombrePlural : producto.unidad.nombreSingular }} de {{ producto.producto.nombre }}</p>
-{{ dump(producto) }}
-{% endfor %}
+        <tbody>
+            <tr>
+                <th style="width:15%;text-align:right;">Sucursal</th>
+                <td style="width:85%">{{ data.orden.orden.sucursal.nombre }}</td>
+            </tr>
+            <tr>
+                <th style="width:15%;text-align:right;">Estado</th>
+                <td style="width:85%">{{ data.orden.orden.estado.estado }}</td>
+            </tr>
+            <tr>
+                <th style="width:15%;text-align:right;">Ingresada por</th>
+                <td style="width:85%">{{ data.orden.orden.creadoPor.nombre }}</td>
+            </tr>
+            <tr>
+                <th style="width:15%;text-align:right;">Fecha de ingreso</th>
+                <td style="width:85%">{{ data.orden.orden.ingresadoDt.date }}</td>
+            </tr>
+            </tr>
+    </table>
+    <hr />
+    {% if (data.orden.orden.estado.id == 1) %}
+        {% include 'AppBundle:comprasOrdenes:vistaAprobacion.html.twig' %}
+    {% else %}
+        {% include 'AppBundle:comprasOrdenes:vistaNormal.html.twig' %}
+    {% endif %}
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        $(function () {
+            $("form select").chosen({ width: "100%" });
+        });
+    </script>
 {% endblock %}

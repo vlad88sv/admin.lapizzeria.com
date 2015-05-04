@@ -1,0 +1,30 @@
+compras_pagos_formas:
+    path:     /
+    defaults: { _controller: "AppBundle:compras/ComprasPagosFormas:index" }
+
+compras_pagos_formas_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:compras/ComprasPagosFormas:show" }
+
+compras_pagos_formas_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:compras/ComprasPagosFormas:new" }
+
+compras_pagos_formas_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:compras/ComprasPagosFormas:create" }
+    requirements: { _method: post }
+
+compras_pagos_formas_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:compras/ComprasPagosFormas:edit" }
+
+compras_pagos_formas_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:compras/ComprasPagosFormas:update" }
+    requirements: { _method: post|put }
+
+compras_pagos_formas_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:compras/ComprasPagosFormas:delete" }
+    requirements: { _method: post|delete }

@@ -211,6 +211,13 @@ class Empleados implements UserInterface, \Serializable
     {
         return $this->clave;
     }
+    
+    public function setPassword($password)
+    {
+        $this->clave = $password;
+        
+        return $this;
+    }
 
     public function getRoles()
     {
@@ -278,7 +285,7 @@ class Empleados implements UserInterface, \Serializable
      *
      * @param \AppBundle\Entity\Roles $roles
      */
-    public function removeRole(\AppBundle\Entity\Roles $roles)
+    public function removeRole($roles)
     {
         $this->roles->removeElement($roles);
     }

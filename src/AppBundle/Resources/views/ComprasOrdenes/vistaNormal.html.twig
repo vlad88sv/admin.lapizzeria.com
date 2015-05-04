@@ -1,0 +1,17 @@
+<h3>Detalle de compra</h3>
+<table class="table table-condensed table-responsive table-striped">
+    <tbody>
+        {%- for producto in data.orden.productos -%}
+        <tr>
+            <th colspan="4">
+                {{ producto.producto.proveedor.nombre }}
+            </th>
+        </tr>
+        <tr>
+            <td style="width:100%;">
+                {{ producto.cantidad }} <span style="font-style: italic">{{ (producto.cantidad > 1) ? producto.unidad.nombrePlural : producto.unidad.nombreSingular }}</span> de {{ producto.producto.nombre }}</p>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

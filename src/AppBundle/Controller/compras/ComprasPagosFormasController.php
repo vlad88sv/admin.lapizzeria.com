@@ -1,41 +1,41 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\compras;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use AppBundle\Entity\Empleados;
-use AppBundle\Form\EmpleadosType;
+use AppBundle\Entity\ComprasPagosFormas;
+use AppBundle\Form\ComprasPagosFormasType;
 
 /**
- * Empleados controller.
+ * ComprasPagosFormas controller.
  *
  */
-class EmpleadosController extends Controller
+class ComprasPagosFormasController extends Controller
 {
 
     /**
-     * Lists all Empleados entities.
+     * Lists all ComprasPagosFormas entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Empleados')->findAll();
+        $entities = $em->getRepository('AppBundle:ComprasPagosFormas')->findAll();
 
-        return $this->render('AppBundle:Empleados:index.html.twig', array(
+        return $this->render('AppBundle:ComprasPagosFormas:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new Empleados entity.
+     * Creates a new ComprasPagosFormas entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Empleados();
+        $entity = new ComprasPagosFormas();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -44,26 +44,26 @@ class EmpleadosController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('empleados_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('compras_pagos_formas_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('AppBundle:Empleados:new.html.twig', array(
+        return $this->render('AppBundle:ComprasPagosFormas:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a Empleados entity.
+     * Creates a form to create a ComprasPagosFormas entity.
      *
-     * @param Empleados $entity The entity
+     * @param ComprasPagosFormas $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Empleados $entity)
+    private function createCreateForm(ComprasPagosFormas $entity)
     {
-        $form = $this->createForm(new EmpleadosType(), $entity, array(
-            'action' => $this->generateUrl('empleados_create'),
+        $form = $this->createForm(new ComprasPagosFormasType(), $entity, array(
+            'action' => $this->generateUrl('compras_pagos_formas_create'),
             'method' => 'POST',
         ));
 
@@ -73,60 +73,60 @@ class EmpleadosController extends Controller
     }
 
     /**
-     * Displays a form to create a new Empleados entity.
+     * Displays a form to create a new ComprasPagosFormas entity.
      *
      */
     public function newAction()
     {
-        $entity = new Empleados();
+        $entity = new ComprasPagosFormas();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('AppBundle:Empleados:new.html.twig', array(
+        return $this->render('AppBundle:ComprasPagosFormas:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Empleados entity.
+     * Finds and displays a ComprasPagosFormas entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Empleados')->find($id);
+        $entity = $em->getRepository('AppBundle:ComprasPagosFormas')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Empleados entity.');
+            throw $this->createNotFoundException('Unable to find ComprasPagosFormas entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('AppBundle:Empleados:show.html.twig', array(
+        return $this->render('AppBundle:ComprasPagosFormas:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Empleados entity.
+     * Displays a form to edit an existing ComprasPagosFormas entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Empleados')->find($id);
+        $entity = $em->getRepository('AppBundle:ComprasPagosFormas')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Empleados entity.');
+            throw $this->createNotFoundException('Unable to find ComprasPagosFormas entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('AppBundle:Empleados:edit.html.twig', array(
+        return $this->render('AppBundle:ComprasPagosFormas:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -134,16 +134,16 @@ class EmpleadosController extends Controller
     }
 
     /**
-    * Creates a form to edit a Empleados entity.
+    * Creates a form to edit a ComprasPagosFormas entity.
     *
-    * @param Empleados $entity The entity
+    * @param ComprasPagosFormas $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Empleados $entity)
+    private function createEditForm(ComprasPagosFormas $entity)
     {
-        $form = $this->createForm(new EmpleadosType(), $entity, array(
-            'action' => $this->generateUrl('empleados_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new ComprasPagosFormasType(), $entity, array(
+            'action' => $this->generateUrl('compras_pagos_formas_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -152,50 +152,37 @@ class EmpleadosController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Empleados entity.
+     * Edits an existing ComprasPagosFormas entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Empleados')->find($id);
+        $entity = $em->getRepository('AppBundle:ComprasPagosFormas')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Empleados entity.');
+            throw $this->createNotFoundException('Unable to find ComprasPagosFormas entity.');
         }
 
-        $originalPassword = $entity->getPassword(); 
-        
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $plainPassword = $editForm->get('clave')->getData();                    
-            if (strlen($plainPassword) != 0)  {  
-                //encode the password   
-                $encoder = $this->container->get('security.encoder_factory')->getEncoder($entity); //get encoder for hashing pwd later
-                $tempPassword = $encoder->encodePassword($entity->getPassword(), $entity->getSalt()); 
-                $entity->setPassword($tempPassword);                
-            }
-            else {
-                $entity->setPassword($originalPassword);
-            }
-
             $em->flush();
 
-            return $this->redirect($this->generateUrl('empleados_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('compras_pagos_formas_edit', array('id' => $id)));
         }
 
-        return $this->render('AppBundle:Empleados:edit.html.twig', array(
+        return $this->render('AppBundle:ComprasPagosFormas:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Empleados entity.
+     * Deletes a ComprasPagosFormas entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -205,21 +192,21 @@ class EmpleadosController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:Empleados')->find($id);
+            $entity = $em->getRepository('AppBundle:ComprasPagosFormas')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Empleados entity.');
+                throw $this->createNotFoundException('Unable to find ComprasPagosFormas entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('empleados'));
+        return $this->redirect($this->generateUrl('compras_pagos_formas'));
     }
 
     /**
-     * Creates a form to delete a Empleados entity by id.
+     * Creates a form to delete a ComprasPagosFormas entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -228,7 +215,7 @@ class EmpleadosController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('empleados_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('compras_pagos_formas_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Eliminar'))
             ->getForm()

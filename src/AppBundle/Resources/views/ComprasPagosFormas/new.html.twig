@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block page_sub_header %}Compras: nueva forma de pago{% endblock %}
+
+{% block body -%}
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('compras_pagos_formas') }}">
+            Regresar a la lista de formas de pago
+        </a>
+    </li>
+</ul>
+{% endblock %}

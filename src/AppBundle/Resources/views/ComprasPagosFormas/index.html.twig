@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+
+{% block page_sub_header %}Compras: lista de formas de pago{% endblock %}
+
+{% block body -%}
+    <p>
+        <a class="btn btn-primary" href="{{ path('compras_pagos_formas_new') }}">Nueva forma de pago</a>
+    </p>
+    <table class="records_list table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Activo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('compras_pagos_formas_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.activo }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('compras_pagos_formas_show', { 'id': entity.id }) }}">ver</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('compras_pagos_formas_edit', { 'id': entity.id }) }}">editar</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

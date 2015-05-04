@@ -1,0 +1,7 @@
+compras_reportar__ingreso:
+    path:     /
+    defaults: { _controller: "AppBundle:compras/ComprasReportar:ingresar" }
+
+compras_reportar__guardar:
+    path:     /guardar
+    defaults: { _controller: "AppBundle:compras/ComprasReportar:guardar" }

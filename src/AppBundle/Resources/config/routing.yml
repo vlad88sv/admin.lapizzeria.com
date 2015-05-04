@@ -1,3 +1,11 @@
+app_compras_pagos_formas:
+    resource: "@AppBundle/Resources/config/routing/compraspagosformas.yml"
+    prefix:   /compras/pagos/formas
+
+app_compras_reportar:
+    resource: "@AppBundle/Resources/config/routing/comprasreportar.yml"
+    prefix:   /compras/reportar
+
 app_empleados:
     resource: "@AppBundle/Resources/config/routing/empleados.yml"
     prefix:   /empleados

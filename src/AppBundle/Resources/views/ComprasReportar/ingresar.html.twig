@@ -1,0 +1,67 @@
+{% extends "base.html.twig" %}
+{% block page_sub_header "Ingreso de compras" %}
+{% block body %}
+    <div class="alert alert-info" role="alert">Ingresando detalles de compra para el día <b>{{ date('now')|date('d/m/Y') }}</b></div>
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Nota: puede realizar ingresos parciales.
+    </div>
+    <form>
+    <table class="table table-hover table-responsive table-condensed">
+        <thead>
+            <tr>
+                <th class="col-md-4 text-center">Sucursal</th>
+                <th class="col-md-4 text-center">Proveedor</th>
+                <th class="col-md-2 text-center">Forma de pago</th>
+                <th class="col-md-2 text-center">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for index in range(1, 10, 1) %}
+            <tr>
+                <td>
+                    <select  data-placeholder=" " class="form-control" name="cmbSucursal[{{ index }}]">
+                    <option value=""></option>
+                    {% for sucursal in data.sucursales %}
+                        <option value="{{ sucursal.id }}">{{sucursal.nombre}}</option> 
+                    {% endfor %}
+                    </select>
+                </td>
+                
+                <td>
+                    <select  data-placeholder=" "  class="form-control" name="cmbProveedor[{{ index }}]">
+                    <option value=""></option>
+                    {% for proveedor in data.proveedores %}
+                        <option value="{{ proveedor.id }}">{{proveedor.nombre}}</option> 
+                    {% endfor %}
+                    </select>
+                </td>
+                
+                <td>
+                    <select  data-placeholder=" "  class="form-control" name="cmbFormaPago[{{ index }}]">
+                    <option value=""></option>
+                    {% for formaPago in data.cfp %}
+                        <option value="{{ formaPago.id }}">{{formaPago.nombre}}</option> 
+                    {% endfor %}
+                    </select>
+                </td>
+                
+                <td>
+                    <input class="form-control" type="number" value="" min="0" />
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr />
+    <button class="btn btn-primary">Guardar</button>
+    </form>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        $(function () {
+            $("form select").chosen({ width: "95%" });
+        });
+    </script>
+{% endblock %}

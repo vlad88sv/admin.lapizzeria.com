@@ -1,0 +1,63 @@
+<form method="POST">
+    <table class="table table-condensed table-responsive table-striped">
+        <thead>
+            <tr>
+                <th style="text-align:center;" colspan="4">
+                    Detalle de orden de compra
+                </th>
+            </tr>
+            <tr>
+                <th style="text-align:center;border-bottom:none;" colspan="3">
+                    Cantidad
+                </th>
+                <th style="border-left:1px solid lightgray;border-bottom:none;">
+
+                </th>
+            </tr>
+            <tr>
+                <th style="text-align:center;border-top:none;">sugerida</th>
+                <th style="text-align:center;border-top:none;">solicitada</th>
+                <th style="text-align:center;border-top:none;">manual</th>
+                <th style="text-align:left;border-left:1px solid lightgray;border-top:none;">Producto</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%- for producto in data.orden.productos -%}
+            <tr>
+                <th colspan="4">
+                    {{ producto.producto.proveedor.nombre }}
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <input style="width:5em;text-align: center;" type="number" min="0" value="{{producto.cantidadSugerida == 0 ? "" : producto.cantidadSugerida}}"/>
+                </td>
+                <td>
+                    <input style="width:5em;text-align: center;" type="number" min="0" value="{{producto.cantidadSolicitada == 0 ? "" : producto.cantidadSolicitada}}"/>
+                </td>
+                <td>
+                    <input style="width:5em;text-align: center;" type="number" min="0" value="{{producto.cantidadAprobada == 0 ? "" : producto.cantidadAprobada}}"/>
+                </td>
+                <td style="width:100%;">
+                    <span style="font-style: italic">{{ (producto.cantidad > 1) ? producto.unidad.nombrePlural : producto.unidad.nombreSingular }}</span> de {{ producto.producto.nombre }}</p>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr />
+    <select data-placeholder="Seleccione el comprador" class="form-control" >
+                <option></option>
+                {% for comprador in data.compradores %}
+                    <option value="{{comprador.id}}">{{comprador.nombre}}</option>
+                {% endfor %}    
+    </select>
+    <hr />
+    <div class="row">
+        <div class="col-xs-6 text-left">
+            <button title="Se enviará un correo de notifación al comprador asignado." type="submit" class="btn btn-primary">Aprobar y asignar</button>
+        </div>
+        <div class="col-xs-6 text-right"><button type="submit" class="btn btn-danger">Denegar</button></div>
+    </div>
+</form>
+<br />

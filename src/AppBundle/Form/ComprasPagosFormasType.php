@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class EmpleadosType extends AbstractType
+class ComprasPagosFormasType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,14 +15,8 @@ class EmpleadosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('usuario')
-            ->add('clave', 'password', array('required' => false))
             ->add('nombre')
-            ->add('email')
             ->add('activo')
-            ->add('supervisor')
-            ->add('roles')
-            ->add('sucursales')
         ;
     }
     
@@ -32,7 +26,7 @@ class EmpleadosType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Empleados'
+            'data_class' => 'AppBundle\Entity\ComprasPagosFormas'
         ));
     }
 
@@ -41,6 +35,6 @@ class EmpleadosType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_empleados';
+        return 'appbundle_compraspagosformas';
     }
 }
