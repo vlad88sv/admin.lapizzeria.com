@@ -15,10 +15,6 @@
                 <td>{{ entity.usuario }}</td>
             </tr>
             <tr>
-                <th>Clave</th>
-                <td>{{ entity.clave }}</td>
-            </tr>
-            <tr>
                 <th>Nombre</th>
                 <td>{{ entity.nombre }}</td>
             </tr>
@@ -28,7 +24,7 @@
             </tr>
             <tr>
                 <th>Activo</th>
-                <td>{{ entity.activo }}</td>
+                <td>{{ entity.activo ? 'Si' : 'No' }}</td>
             </tr>
         </tbody>
     </table>

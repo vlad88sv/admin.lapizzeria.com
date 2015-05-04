@@ -39,6 +39,10 @@ class EmpleadosController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
+        $encoder = $this->container->get('security.encoder_factory')->getEncoder($entity); //get encoder for hashing pwd later
+        $password = $encoder->encodePassword($form->get('clave')->getData(), $entity->getSalt()); 
+        $entity->setPassword($password);                
+                
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
