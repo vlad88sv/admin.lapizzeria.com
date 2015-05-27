@@ -14,9 +14,7 @@ class VentasController extends Controller {
             'TPL' => 'estadisticas',
             'periodo_inicio' => date('Y-m-d 00:00:00'),
             'periodo_final' => date('Y-m-d 23:59:59')
-        );
-        
-        var_dump($fields);
+        );      
 
         $options = array(
             'http' => array(
