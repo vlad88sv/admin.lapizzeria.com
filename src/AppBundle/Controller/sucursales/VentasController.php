@@ -20,6 +20,7 @@ class VentasController extends Controller {
             'http' => array(
                 'header' => "Content-type: application/x-www-form-urlencoded\r\n",
                 'method' => 'POST',
+                'timeout' => 30,
                 'content' => http_build_query($fields),
             )
         );
