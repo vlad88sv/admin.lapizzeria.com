@@ -22,7 +22,9 @@ class ComprasIngresoController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $data = [];
 
-        $data['sucursales'] = $em->createQuery('SELECT s FROM AppBundle:Sucursales s ORDER BY s.nombre ASC')->getResult();
+        $data['mapeo'] = $em->createQuery('SELECT e FROM AppBundle:Empleados e JOIN AppBundle:Sucursales s WHERE e = :empleados_id')
+                ->setParameter('empleados_id', $this->getUser())
+                ->getSingleResult();
 
         return $this->render('AppBundle:ComprasIngreso:seleccionarSucursal.html.twig', ['data' => $data]);
     }

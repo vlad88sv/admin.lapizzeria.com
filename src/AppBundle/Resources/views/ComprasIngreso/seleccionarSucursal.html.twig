@@ -2,7 +2,8 @@
 {% block page_sub_header "Paso 1/2 - Sucursal" %}
 {% block body %}
     <p>Selecciona la sucursal para la cual desea ingresar su orden de compra.</p>
-    {% for sucursal in data.sucursales %}
+    
+    {% for sucursal in data.mapeo.sucursales %}
         <a class="btn btn-bg btn-info" style="margin:5px;min-width: 200px;" href="{{ path('compras_ingreso__seleccionar_productos', {sucursal: sucursal.id}) }} ">{{ sucursal.nombre }}</a><br />
     {% endfor %}
     

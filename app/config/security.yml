@@ -13,7 +13,9 @@ security:
             
     # http://symfony.com/doc/current/book/security.html#hierarchical-roles
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_ADMIN: [ROLE_USER, ROLE_MESERO, ROLE_EMPLEADO, ROLE_FINANCIERO, ROLE_COMPRADOR]
+        ROLE_GERENTE_GENERAL: ROLE_GERENTE_LOCAL
+        
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
 
@@ -37,4 +39,5 @@ security:
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/ajax/finanzas, roles: ROLE_FINANCIERO}
         - { path: ^/, roles: ROLE_USER }

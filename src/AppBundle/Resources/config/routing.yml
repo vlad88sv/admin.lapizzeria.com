@@ -1,3 +1,17 @@
+homepage:
+    path:     /
+    defaults: { _controller: "AppBundle:Default:index" }
+    
+app_sucursales_ventas:
+    path:     /sucursales/ventas
+    defaults: { _controller: "AppBundle:sucursales/Ventas:index" }
+
+app_ws_sucursales_totales:
+    path:     /ws/finanzas/sucursales/totales
+    defaults: { _controller: "AppBundle:sucursales/Ventas:totales" }
+
+
+############## RESOURCES ############## 
 app_compras_pagos_formas:
     resource: "@AppBundle/Resources/config/routing/compraspagosformas.yml"
     prefix:   /compras/pagos/formas
@@ -9,10 +23,6 @@ app_compras_reportar:
 app_empleados:
     resource: "@AppBundle/Resources/config/routing/empleados.yml"
     prefix:   /empleados
-
-homepage:
-    path:     /
-    defaults: { _controller: "AppBundle:Default:index" }
 
 app_compras_productos:
     resource: "@AppBundle/Resources/config/routing/comprasproductos.yml"

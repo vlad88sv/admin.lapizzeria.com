@@ -30,7 +30,7 @@
             </tr>
             <tr>
                 <td>
-                    <input style="width:5em;text-align: center;" type="number" min="0" value="{{producto.cantidadSugerida == 0 ? "" : producto.cantidadSugerida}}"/>
+                    <input name="cantidad[{{ producto.id }}][1]"style="width:5em;text-align: center;" type="number" min="0" value="{{producto.cantidadSugerida == 0 ? "" : producto.cantidadSugerida}}"/>
                 </td>
                 <td>
                     <input style="width:5em;text-align: center;" type="number" min="0" value="{{producto.cantidadSolicitada == 0 ? "" : producto.cantidadSolicitada}}"/>
@@ -46,7 +46,7 @@
         </tbody>
     </table>
     <hr />
-    <select data-placeholder="Seleccione el comprador" class="form-control" >
+    <select name="cmbComprador" data-placeholder="Seleccione el comprador" class="form-control" >
                 <option></option>
                 {% for comprador in data.compradores %}
                     <option value="{{comprador.id}}">{{comprador.nombre}}</option>

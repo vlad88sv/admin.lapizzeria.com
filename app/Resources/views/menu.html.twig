@@ -13,11 +13,19 @@
     <li>
         <a href="{{ path("homepage") }}"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
     </li>
+    
+    {% if (is_granted('ROLE_ADMIN')) %}
+        <li><a href="{{ path("empleados") }}"><i class="fa fa-users fa-fw"></i> Empleados</a></li>
+    {% endif %}   
+    
     <li>
-        <a href="{{ path("empleados") }}"><i class="fa fa-users fa-fw"></i> Empleados</a>
-    </li>
-    <li>
-        <a href="{{ path("sucursales") }}"><i class="fa fa-cutlery fa-fw"></i> Sucursales</a>
+        <a href="#"><i class="fa fa-cutlery fa-fw"></i> Sucursales</a>
+        <ul class="nav nav-second-level">
+            <li><a href="{{ path("sucursales") }}">Administración</a></li>
+            {% if (is_granted('ROLE_FINANCIERO')) %}
+            <li><a href="{{ path("app_sucursales_ventas") }}">Ventas</a></li>
+            {% endif %}
+        </ul>
     </li>
 
     <li>

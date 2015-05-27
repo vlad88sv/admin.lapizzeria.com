@@ -214,6 +214,9 @@ class Empleados implements UserInterface, \Serializable
     
     public function setPassword($password)
     {
+        if (strlen($password) === 0 )
+            return $this;
+        
         $this->clave = $password;
         
         return $this;

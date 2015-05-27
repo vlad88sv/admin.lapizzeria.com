@@ -50,6 +50,15 @@
             producto.id = $("#cmbProductos").val();            
             producto.cantidad = $("#txtCantidad").val(); 
             producto.nombre = $("#cmbProductos option:selected").text();
+            
+            // Verificar si ya se agrego el producto
+            for(var tmpProducto in aProductos) {
+                if (producto.id === aProductos[tmpProducto].id) {
+                    alert("Esto producto ya esta agregado a la lista.");
+                    return;
+                }
+            }
+            
             aProductos.push(producto);
             renderizarDatos();
         }
@@ -57,7 +66,7 @@
         function eliminarProducto() {
             var id = $(this).attr('rel');
             
-            aProductos = aProductos.slice((id+1),1);
+            aProductos.splice(id,1);
             
             renderizarDatos();
         }
@@ -82,12 +91,20 @@
         
         function actualizarUnidad(){
             $("#unidad").html(aDictProductos['id_'+$(this).val()].unidad);
+            $("#txtCantidad").focus().select();
         }
         
+        function usabilidadCantidad(event) {
+            if ( event.which === 13 ) {
+                $("#btnAgregarProducto").click();
+                $("#txtCantidad").val('0');    
+                $("#cmbProductos").trigger('chosen:activate');
+            }
+        }
 
         $(function () {
-            $("#cmbProductos").chosen();
-            $("#cmbProductos").change(actualizarUnidad);
+            $("#cmbProductos").chosen().change(actualizarUnidad)
+            $("#txtCantidad").keyup(usabilidadCantidad);
             $("#btnAgregarProducto").click(agregarProducto);
             $(document).on('click', '.eliminarProducto', eliminarProducto);
         });

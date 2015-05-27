@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block page_sub_header %}Totales de dia{% endblock %}
+
+{% block body %}
+    <table class="table table-responsive table-bordered text-center">
+        <tr>
+            <th class="text-center">Mascota</th>
+            <th class="text-center">Skina</th>
+            <th class="text-center">Volcan</th>
+            <th class="text-center">Castaños</th>
+        </tr>
+        <tr>
+            <td id="total_1">${{data.mascota.aux.venta_por_dias[0].total}}</th>
+            <td id="total_2">${{data.skina.aux.venta_por_dias[0].total}}</th>
+            <td id="total_3">${{data.volcan.aux.venta_por_dias[0].total}}</th>
+            <td id="total_4">${{data.castanos.aux.venta_por_dias[0].total}}</th>
+        </tr>
+    </table>
+    <button id="btn_actualizar" class="btn btn-primary">Actualizar</button>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $("#btn_actualizar").click(function(){
+            alert("hola");
+        });
+    </script>
+{% endblock %}

@@ -22,5 +22,4 @@ class DefaultController extends Controller
         
         return $this->render('AppBundle:default:index.html.twig', ['data' => $data]);
     }
-   
 }

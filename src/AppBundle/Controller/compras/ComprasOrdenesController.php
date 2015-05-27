@@ -20,7 +20,7 @@ class ComprasOrdenesController extends Controller {
         
         if ($request->getMethod() === "POST")
         {
-            var_dump($request);
+            var_dump($request->request->all());
         }
         
         $em = $this->getDoctrine()->getManager();

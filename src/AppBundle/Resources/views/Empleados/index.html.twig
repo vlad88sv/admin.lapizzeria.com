@@ -9,9 +9,12 @@
             <tr>
                 <th>ID</th>
                 <th>Usuario</th>
+                <th>Activo</th>
                 <th>Nombre</th>
                 <th>Email</th>
-                <th>Activo</th>
+                <th>Roles</th>
+                <th>Sucursales</th>
+                
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -20,9 +23,23 @@
             <tr>
                 <td><a href="{{ path('empleados_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.usuario }}</td>
+                <td><span class="glyphicon glyphicon-{{ entity.activo ? 'ok' : 'remove' }}" aria-hidden="true"></span></td>
                 <td>{{ entity.nombre }}</td>
                 <td>{{ entity.email }}</td>
-                <td>{{ entity.activo }}</td>
+                <td>
+                    <ul class="list-unstyled">
+                    {% for rol in entity.roles %}
+                        <li>{{ rol|replace({"ROLE_" : ""}) }}</li>
+                    {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul class="list-unstyled">
+                    {% for sucursal in entity.sucursales %}
+                        <li>{{ sucursal }}</li>
+                    {% endfor %}
+                    </ul>
+                </td>
                 <td>
                 <ul>
                     <li>
