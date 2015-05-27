@@ -14,7 +14,7 @@ class VentasController extends Controller {
             'TPL' => 'estadisticas',
             'periodo_inicio' => date('Y-m-d 00:00:00'),
             'periodo_final' => date('Y-m-d 23:59:59')
-        );      
+        );
 
         $options = array(
             'http' => array(
@@ -26,10 +26,29 @@ class VentasController extends Controller {
 
         $context = stream_context_create($options);
 
-        $data['mascota'] = json_decode(file_get_contents('http://mascota.zapto.org/SERV/?REFERENCIA=estadisticas', false, $context),true);
-        $data['volcan'] = json_decode(file_get_contents('http://volcan.zapto.org/SERV/?REFERENCIA=estadisticas', false, $context));
-        $data['castanos'] = json_decode(file_get_contents('http://castanos.zapto.org/SERV/?REFERENCIA=estadisticas', false, $context));
-        $data['skina'] = json_decode(file_get_contents('http://skina.zapto.org/SERV/?REFERENCIA=estadisticas', false, $context));
+        try {
+            $data['mascota'] = json_decode(file_get_contents('http://mascota.zapto.org/SERV/?REFERENCIA=estadisticas', false, $context), true);
+        } catch (\Exception $e) {
+            
+        }
+
+        try {
+            $data['volcan'] = json_decode(file_get_contents('http://volcan.zapto.org/SERV/?REFERENCIA=estadisticas', false, $context));
+        } catch (\Exception $e) {
+            
+        }
+
+        try {
+            $data['castanos'] = json_decode(file_get_contents('http://castanos.zapto.org/SERV/?REFERENCIA=estadisticas', false, $context));
+        } catch (\Exception $e) {
+            
+        }
+
+        try {
+            $data['skina'] = json_decode(file_get_contents('http://skina.zapto.org/SERV/?REFERENCIA=estadisticas', false, $context));
+        } catch (\Exception $e) {
+            
+        }
 
         return $this->render('AppBundle:Sucursales:ventas.html.twig', ['data' => $data]);
     }
