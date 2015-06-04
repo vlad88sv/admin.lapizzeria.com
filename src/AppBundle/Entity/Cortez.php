@@ -40,7 +40,7 @@ class Cortez
     private $totalAnulado;
 
     /**
-     * @var \DateTime
+     * @var string
      */
     private $totalCancelado;
 
@@ -64,6 +64,11 @@ class Cortez
      */
     private $totalComprasCuadrar;
 
+    /**
+     * @var \AppBundle\Entity\Sucursales
+     */
+    private $sucursal;
+
 
     /**
      * Get id
@@ -79,7 +84,7 @@ class Cortez
      * Set fecha
      *
      * @param \DateTime $fecha
-     * @return cortez
+     * @return Cortez
      */
     public function setFecha($fecha)
     {
@@ -102,7 +107,7 @@ class Cortez
      * Set total
      *
      * @param string $total
-     * @return cortez
+     * @return Cortez
      */
     public function setTotal($total)
     {
@@ -125,7 +130,7 @@ class Cortez
      * Set totalPendiente
      *
      * @param string $totalPendiente
-     * @return cortez
+     * @return Cortez
      */
     public function setTotalPendiente($totalPendiente)
     {
@@ -148,7 +153,7 @@ class Cortez
      * Set totalPosible
      *
      * @param string $totalPosible
-     * @return cortez
+     * @return Cortez
      */
     public function setTotalPosible($totalPosible)
     {
@@ -171,7 +176,7 @@ class Cortez
      * Set totalAnulado
      *
      * @param string $totalAnulado
-     * @return cortez
+     * @return Cortez
      */
     public function setTotalAnulado($totalAnulado)
     {
@@ -193,8 +198,8 @@ class Cortez
     /**
      * Set totalCancelado
      *
-     * @param \DateTime $totalCancelado
-     * @return cortez
+     * @param string $totalCancelado
+     * @return Cortez
      */
     public function setTotalCancelado($totalCancelado)
     {
@@ -206,7 +211,7 @@ class Cortez
     /**
      * Get totalCancelado
      *
-     * @return \DateTime 
+     * @return string 
      */
     public function getTotalCancelado()
     {
@@ -217,7 +222,7 @@ class Cortez
      * Set totalDescuentos
      *
      * @param string $totalDescuentos
-     * @return cortez
+     * @return Cortez
      */
     public function setTotalDescuentos($totalDescuentos)
     {
@@ -240,7 +245,7 @@ class Cortez
      * Set totalCompras
      *
      * @param string $totalCompras
-     * @return cortez
+     * @return Cortez
      */
     public function setTotalCompras($totalCompras)
     {
@@ -263,7 +268,7 @@ class Cortez
      * Set totalCuadrar
      *
      * @param string $totalCuadrar
-     * @return cortez
+     * @return Cortez
      */
     public function setTotalCuadrar($totalCuadrar)
     {
@@ -286,7 +291,7 @@ class Cortez
      * Set totalComprasCuadrar
      *
      * @param string $totalComprasCuadrar
-     * @return cortez
+     * @return Cortez
      */
     public function setTotalComprasCuadrar($totalComprasCuadrar)
     {
@@ -303,5 +308,28 @@ class Cortez
     public function getTotalComprasCuadrar()
     {
         return $this->totalComprasCuadrar;
+    }
+
+    /**
+     * Set sucursal
+     *
+     * @param \AppBundle\Entity\Sucursales $sucursal
+     * @return Cortez
+     */
+    public function setSucursal(\AppBundle\Entity\Sucursales $sucursal = null)
+    {
+        $this->sucursal = $sucursal;
+
+        return $this;
+    }
+
+    /**
+     * Get sucursal
+     *
+     * @return \AppBundle\Entity\Sucursales 
+     */
+    public function getSucursal()
+    {
+        return $this->sucursal;
     }
 }

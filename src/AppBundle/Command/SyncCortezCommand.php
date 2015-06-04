@@ -38,7 +38,7 @@ class SyncCortezCommand extends ContainerAwareCommand
             'http' => array(
                 'header' => "Content-type: application/x-www-form-urlencoded\r\n",
                 'method' => 'POST',
-                'timeout' => 10,
+                'timeout' => 30,
                 'content' => http_build_query($fields),
             )
         );
@@ -72,9 +72,12 @@ class SyncCortezCommand extends ContainerAwareCommand
             $doCortez->setTotalDescuentos($json['aux']['total_descuentos']);
             $doCortez->setTotalPendiente($json['aux']['total_pendiente']);
             $doCortez->setTotalPosible($json['aux']['total_posible']);
+            $doCortez->setSucursal($sucursal);
+            
             $em->persist($doCortez);
             $em->flush();
             $em->clear();
+            
             $output->writeln("Sucursal persistida: " . $sucursal->getNombre());
         }
     }

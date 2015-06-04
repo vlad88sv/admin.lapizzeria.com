@@ -37,15 +37,8 @@ AppBundle\Entity\Cortez:
             type: decimal
             column: total_compras_cuadrar
     
-    ManyToOne:
+    manyToOne:
         sucursal:
             targetEntity: Sucursales
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                sucursal_id:
-                    referencedColumnName: id
-            orphanRemoval: false
-    
+
     lifecycleCallbacks: {  }

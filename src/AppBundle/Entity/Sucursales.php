@@ -17,23 +17,40 @@ class Sucursales
     /**
      * @var string
      */
-    private $nombre = '';
+    private $nombre;
+
+    /**
+     * @var string
+     */
+    private $telefono;
+
+    /**
+     * @var string
+     */
+    private $direccion;
+
+    /**
+     * @var string
+     */
+    private $wsServUrl;
 
     /**
      * @var boolean
      */
-    private $telefono = '';
+    private $activo;
 
     /**
-     * @var boolean
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $direccion = '';
+    private $empleados;
 
     /**
-     * @var boolean
+     * Constructor
      */
-    private $activo = true;
-
+    public function __construct()
+    {
+        $this->empleados = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -71,7 +88,7 @@ class Sucursales
     /**
      * Set telefono
      *
-     * @param boolean $telefono
+     * @param string $telefono
      * @return Sucursales
      */
     public function setTelefono($telefono)
@@ -84,7 +101,7 @@ class Sucursales
     /**
      * Get telefono
      *
-     * @return boolean 
+     * @return string 
      */
     public function getTelefono()
     {
@@ -94,7 +111,7 @@ class Sucursales
     /**
      * Set direccion
      *
-     * @param boolean $direccion
+     * @param string $direccion
      * @return Sucursales
      */
     public function setDireccion($direccion)
@@ -107,11 +124,34 @@ class Sucursales
     /**
      * Get direccion
      *
-     * @return boolean 
+     * @return string 
      */
     public function getDireccion()
     {
         return $this->direccion;
+    }
+
+    /**
+     * Set wsServUrl
+     *
+     * @param string $wsServUrl
+     * @return Sucursales
+     */
+    public function setWsServUrl($wsServUrl)
+    {
+        $this->wsServUrl = $wsServUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get wsServUrl
+     *
+     * @return string 
+     */
+    public function getWsServUrl()
+    {
+        return $this->wsServUrl;
     }
 
     /**
@@ -135,18 +175,6 @@ class Sucursales
     public function getActivo()
     {
         return $this->activo;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $empleados;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->empleados = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -180,37 +208,5 @@ class Sucursales
     public function getEmpleados()
     {
         return $this->empleados;
-    }
-    
-    public function __toString() {
-        return $this->nombre;
-    }
-    /**
-     * @var string
-     */
-    private $wsServUrl;
-
-
-    /**
-     * Set wsServUrl
-     *
-     * @param string $wsServUrl
-     * @return Sucursales
-     */
-    public function setWsServUrl($wsServUrl)
-    {
-        $this->wsServUrl = $wsServUrl;
-
-        return $this;
-    }
-
-    /**
-     * Get wsServUrl
-     *
-     * @return string 
-     */
-    public function getWsServUrl()
-    {
-        return $this->wsServUrl;
     }
 }
