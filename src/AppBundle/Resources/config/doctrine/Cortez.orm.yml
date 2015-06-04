@@ -1,0 +1,51 @@
+AppBundle\Entity\Cortez:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        fecha:
+            type: datetime
+        total:
+            type: decimal
+        totalPendiente:
+            type: decimal
+            column: total_pendiente
+        totalPosible:
+            type: decimal
+            column: total_posible
+        totalAnulado:
+            type: decimal
+            column: total_anulado
+        totalCancelado:
+            type: decimal
+            column: total_cancelado
+        totalDescuentos:
+            type: decimal
+            column: total_descuentos
+        totalCompras:
+            type: decimal
+            column: total_compras
+        totalCuadrar:
+            type: decimal
+            column: total_cuadrar
+        totalComprasCuadrar:
+            type: decimal
+            column: total_compras_cuadrar
+    
+    ManyToOne:
+        sucursal:
+            targetEntity: Sucursales
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                sucursal_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    
+    lifecycleCallbacks: {  }

@@ -185,4 +185,32 @@ class Sucursales
     public function __toString() {
         return $this->nombre;
     }
+    /**
+     * @var string
+     */
+    private $wsServUrl;
+
+
+    /**
+     * Set wsServUrl
+     *
+     * @param string $wsServUrl
+     * @return Sucursales
+     */
+    public function setWsServUrl($wsServUrl)
+    {
+        $this->wsServUrl = $wsServUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get wsServUrl
+     *
+     * @return string 
+     */
+    public function getWsServUrl()
+    {
+        return $this->wsServUrl;
+    }
 }

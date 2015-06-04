@@ -32,6 +32,13 @@ AppBundle\Entity\Sucursales:
             nullable: false
             comment: ''
             default: ''
+        wsServUrl:
+            type: string
+            length: 255
+            nullable: false
+            column: ws_serv_url
+            comment: ''
+            default: ''
         activo:
             type: boolean
             nullable: false

@@ -18,6 +18,7 @@ class SucursalesType extends AbstractType
             ->add('nombre', null, ['label' => 'Nombre', 'required' => true])
             ->add('telefono', null, ['label' => 'Teléfono', 'required' => false])
             ->add('direccion', null, ['label' => 'Dirección', 'required' => false])
+            ->add('wsServUrl', null, ['label' => 'WS SERV URL', 'required' => false])
             ->add('activo', null, ['label' => 'Activo', 'required' => false])
         ;
     }
