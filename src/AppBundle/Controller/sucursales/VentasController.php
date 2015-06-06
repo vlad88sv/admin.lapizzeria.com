@@ -32,6 +32,7 @@ class VentasController extends Controller {
             c2.fecha <= :fecha
             ORDER BY c2.id DESC
             LIMIT 1)
+            ORDER BY s.id ASC
         ";
 
         $stmt = $em->getConnection()->prepare($sql);
