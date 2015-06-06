@@ -25,8 +25,6 @@ class SyncCortezCommand extends ContainerAwareCommand
         $em = $this->getContainer()->get('doctrine')->getManager();
         /* @var $em \Doctrine\ORM\EntityManager */  
         
-        $doSucursales = $em->getRepository(Sucursales::class)->findAll();
-        
         $data = [];
 
         $fields = array(
@@ -48,6 +46,8 @@ class SyncCortezCommand extends ContainerAwareCommand
         $fecha = new \DateTime;
         
         /* @var $sucursal \AppBundle\Entity\Sucursales */
+        $doSucursales = $em->getRepository(Sucursales::class)->findAll();
+        
         foreach($doSucursales as $sucursal) {
         
             try {
@@ -76,10 +76,10 @@ class SyncCortezCommand extends ContainerAwareCommand
             $doCortez->setSucursal($sucursal);
             
             $em->persist($doCortez);
-            $em->flush();
-            $em->clear();
             
             $output->writeln("Sucursal persistida: " . $sucursal->getNombre());
         }
+        
+        $em->flush();
     }
 }
