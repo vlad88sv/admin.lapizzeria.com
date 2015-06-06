@@ -3,28 +3,22 @@
 {% block page_sub_header %}Totales de dia{% endblock %}
 
 {% block body %}
-    <table class="table table-responsive table-bordered text-center">
-        <tr>
-            <th class="text-center">Mascota</th>
-            <th class="text-center">Skina</th>
-            <th class="text-center">Volcan</th>
-            <th class="text-center">Castaños</th>
-        </tr>
-        <tr>
-            <td id="total_1">${{data.mascota.aux.venta_por_dias[0].total|default('ERROR')}}</th>
-            <td id="total_2">${{data.skina.aux.venta_por_dias[0].total|default('ERROR')}}</th>
-            <td id="total_3">${{data.volcan.aux.venta_por_dias[0].total|default('ERROR')}}</th>
-            <td id="total_4">${{data.castanos.aux.venta_por_dias[0].total|default('ERROR')}}</th>
-        </tr>
-    </table>
-    <button id="btn_actualizar" class="btn btn-primary">Actualizar</button>
+    <div class="text-center">
+        <input id="datetimepicker" type="text" >
+    </div>
+    <div id="contenedor-ventas"></div>
+
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        $("#btn_actualizar").click(function(){
-            alert("hola");
-        });
+        $(function(){
+            $('#datetimepicker').datetimepicker({inline:true,format:'Y-m-d+H:i:59', maxDate:0, step:5});
+            $("#contenedor-ventas").load('{{ path('app_ws_sucursales_totales') }}');
+            $('#datetimepicker').change(function(){
+                $("#contenedor-ventas").load('{{ path('app_ws_sucursales_totales') }}/'+$(this).val());
+            });
+        });        
     </script>
 {% endblock %}

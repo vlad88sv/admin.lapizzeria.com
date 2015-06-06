@@ -7,8 +7,8 @@ app_sucursales_ventas:
     defaults: { _controller: "AppBundle:sucursales/Ventas:index" }
 
 app_ws_sucursales_totales:
-    path:     /ws/finanzas/sucursales/totales
-    defaults: { _controller: "AppBundle:sucursales/Ventas:totales" }
+    path:     /ws/finanzas/sucursales/totales/{fecha}
+    defaults: { _controller: "AppBundle:sucursales/Ventas:totales", fecha: '' }
 
 
 ############## RESOURCES ############## 

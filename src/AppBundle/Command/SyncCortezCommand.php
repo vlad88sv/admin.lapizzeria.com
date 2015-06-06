@@ -54,6 +54,7 @@ class SyncCortezCommand extends ContainerAwareCommand
                 $json = json_decode(file_get_contents($sucursal->getWsServUrl(), false, $context), true);
             } catch (\Exception $e) {
                 // No se pudo hacer fetch de la sucursal
+                $output->writeln("Sucursal FALLIDA: " . $sucursal->getNombre());
                 continue;
             }
             

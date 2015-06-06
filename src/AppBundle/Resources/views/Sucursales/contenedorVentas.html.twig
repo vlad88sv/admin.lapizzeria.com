@@ -1,0 +1,64 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            {% for corte in cortez %}
+            <th>{{ corte.nombre }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td class="text-right">Fecha</td>
+        {% for corte in cortez %}
+            <td>{{corte.fecha}}</td>
+        {% endfor %}
+        </tr>
+        <tr><td class="text-right">Total</td>
+        {% for corte in cortez %}
+            <td>${{corte.total|number_format(2, '.', ',')}}</td>
+        {% endfor %}
+        </tr>
+        <tr><td class="text-right">T. Pendiente</td>
+        {% for corte in cortez %}
+            <td>${{corte.total_pendiente|number_format(2, '.', ',')}}</td>
+        {% endfor %}
+        </tr>
+        <tr><td class="text-right">T. Posible</td>
+        {% for corte in cortez %}
+            <td>${{corte.total_posible|number_format(2, '.', ',')}}</td>
+        {% endfor %}
+        </tr>
+        <tr><td class="text-right">T. Anulado</td>
+        {% for corte in cortez %}
+            <td>${{corte.total_anulado|number_format(2, '.', ',')}}</td>
+        {% endfor %}
+        </tr>
+        <tr><td class="text-right">T. Cancelado</td>
+        {% for corte in cortez %}
+            <td>${{corte.total_cancelado|number_format(2, '.', ',')}}</td>
+        {% endfor %}
+        </tr>
+        <tr><td class="text-right">T. Descuentos</td>
+        {% for corte in cortez %}
+            <td>${{corte.total_descuentos|number_format(2, '.', ',')}}</td>
+        {% endfor %}
+        </tr>
+        <tr><td class="text-right">T. Compras</td>
+        {% for corte in cortez %}
+            <td>${{corte.total_compras|number_format(2, '.', ',')}}</td>
+        {% endfor %}
+        </tr>
+            
+        <tr stlye="font-weight:bold;"><td class="text-right">T. Cuadrar</td>
+        {% for corte in cortez %}
+            <td>${{corte.total_cuadrar|number_format(2, '.', ',')}}</td>
+        {% endfor %}
+        </tr>
+            
+        <tr stlye="font-weight:bold;"><td class="text-right">T. Compras Cuadrar</td>
+        {% for corte in cortez %}
+            <td>${{corte.total_compras_cuadrar|number_format(2, '.', ',')}}</td>
+        {% endfor %}
+        </tr>
+    </tbody>
+</table>
