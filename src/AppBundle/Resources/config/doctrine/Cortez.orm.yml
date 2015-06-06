@@ -1,6 +1,6 @@
 AppBundle\Entity\Cortez:
     type: entity
-    table: null
+    table: cortez
     id:
         id:
             type: integer
