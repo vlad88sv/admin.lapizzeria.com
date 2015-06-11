@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block page_sub_header %}Quejas en sucursales{% endblock %}
+
+{% block body -%}
+    <p>
+        <a class="btn btn-primary" href="{{ path('sucursales_quejas_new') }}">
+            Agregar una nueva queja
+        </a>
+    </p>
+    <table class="records_list table table-hover table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Queja</th>
+                <th>Solucion</th>
+                <th>Nota</th>
+                <th title="Cliente reportó primero">CRP</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('sucursales_quejas_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.queja }}</td>
+                    <td>{{ entity.solucion }}</td>
+                    <td>{{ entity.nota }}</td>
+                    <td>{{ entity.clienteReportoPrimero ? 'si' : 'no' }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('sucursales_quejas_show', { 'id': entity.id }) }}">mostrar</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('sucursales_quejas_edit', { 'id': entity.id }) }}">editar</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

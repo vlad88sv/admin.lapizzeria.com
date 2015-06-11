@@ -1,0 +1,40 @@
+sucursales_quejas_ingresar:
+    path:     /ingresar
+    defaults: { _controller: "AppBundle:sucursales/SucursalesQuejasIngresar:index" }
+    
+sucursales_quejas_gracias:
+    path:     /gracias
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    AppBundle:SucursalesQuejasIngresar:gracias.html.twig
+    
+sucursales_quejas:
+    path:     /
+    defaults: { _controller: "AppBundle:sucursales/SucursalesQuejas:index" }
+
+sucursales_quejas_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:sucursales/SucursalesQuejas:show" }
+
+sucursales_quejas_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:sucursales/SucursalesQuejas:new" }
+
+sucursales_quejas_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:sucursales/SucursalesQuejas:create" }
+    requirements: { _method: post }
+
+sucursales_quejas_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:sucursales/SucursalesQuejas:edit" }
+
+sucursales_quejas_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:sucursales/SucursalesQuejas:update" }
+    requirements: { _method: post|put }
+
+sucursales_quejas_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:sucursales/SucursalesQuejas:delete" }
+    requirements: { _method: post|delete }

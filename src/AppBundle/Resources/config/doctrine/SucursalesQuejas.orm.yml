@@ -1,0 +1,53 @@
+AppBundle\Entity\SucursalesQuejas:
+    type: entity
+    table: sucursales_quejas
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+                
+    fields:
+        queja:
+            type: text
+        solucion:
+            type: text            
+        nota:
+            type: integer
+        clienteReportoPrimero:
+            type: boolean
+            column: cliente_reporto_primero
+        horaRegistro:
+            type: datetime
+            column: hora_registro
+    
+    manyToOne:
+        sucursal:
+            targetEntity: Sucursales
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                sucursal_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        gerente:
+            targetEntity: Empleados
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                gerente:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ingresadoPor:
+            targetEntity: Empleados
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ingresado_por_id:
+                    referencedColumnName: id
+            orphanRemoval: false    
+    lifecycleCallbacks: {  }

@@ -209,4 +209,8 @@ class Sucursales
     {
         return $this->empleados;
     }
+    
+    public function __toString() {
+        return $this->nombre;
+    }
 }

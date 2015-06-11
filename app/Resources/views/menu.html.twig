@@ -19,12 +19,30 @@
     {% endif %}   
     
     <li>
-        <a href="#"><i class="fa fa-cutlery fa-fw"></i> Sucursales</a>
+        <a href="#"><i class="fa fa-thumbs-o-down fa-fw"></i> Quejas<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
-            <li><a href="{{ path("sucursales") }}">Administración</a></li>
+            
+            <li><a href="{{ path("sucursales_quejas_ingresar") }}">Registrar queja</a></li>
+            
+            {% if (is_granted('ROLE_GERENTE_GENERAL')) %}
+            <li><a href="{{ path("sucursales_quejas") }}">Quejas abiertas</a></li>
+            <li><a href="{{ path("sucursales_quejas") }}">Editar quejas</a></li>
+            {% endif %}            
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#"><i class="fa fa-cutlery fa-fw"></i> Sucursales<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            
             {% if (is_granted('ROLE_FINANCIERO')) %}
             <li><a href="{{ path("app_sucursales_ventas") }}">Ventas</a></li>
+            {% endif %}            
+            
+            {% if (is_granted('ROLE_ADMIN')) %}
+            <li><a href="{{ path("sucursales") }}">Administración</a></li>
             {% endif %}
+            
         </ul>
     </li>
 
