@@ -24,6 +24,8 @@ class VentasController extends Controller {
         $sql = " 
             SELECT s.nombre, c.id, c.fecha, c.total, c.total_pendiente, c.total_posible, c.total_anulado, c.total_cancelado, c.total_descuentos, c.total_compras, c.total_cuadrar, c.total_compras_cuadrar, c.sucursal_id
             FROM sucursales s
+            JOIN empleados_sucursales es
+            ON s.id = es.sucursales_id AND es.empleados_id = :empleados_id
             LEFT JOIN cortez c ON s.id = c.sucursal_id
             WHERE c.id = (
             SELECT c2.id
@@ -37,6 +39,7 @@ class VentasController extends Controller {
 
         $stmt = $em->getConnection()->prepare($sql);
         $stmt->bindValue('fecha', (string)$fecha);
+        $stmt->bindValue('empleados_id', (int)$this->getUser()->getId());
         $stmt->execute();
         $cortez = $stmt->fetchAll();
 
