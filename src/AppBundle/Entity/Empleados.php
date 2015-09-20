@@ -212,16 +212,6 @@ class Empleados implements UserInterface, \Serializable
         return $this->clave;
     }
     
-    public function setPassword($password)
-    {
-        if (strlen($password) === 0 )
-            return $this;
-        
-        $this->clave = $password;
-        
-        return $this;
-    }
-
     public function getRoles()
     {
         $roles = $this->roles->toArray();

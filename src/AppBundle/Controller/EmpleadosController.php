@@ -163,6 +163,7 @@ class EmpleadosController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        /* @var $entity \AppBundle\Entity\Empleados */
         $entity = $em->getRepository('AppBundle:Empleados')->find($id);
 
         if (!$entity) {
@@ -174,12 +175,14 @@ class EmpleadosController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $entity->setClave($entity->getClave());
+            
             $plainPassword = $editForm->get('clave')->getData();                    
             if ($plainPassword !== "")  {  
                 //encode the password   
                 $encoder = $this->container->get('security.encoder_factory')->getEncoder($entity); //get encoder for hashing pwd later
-                $tempPassword = $encoder->encodePassword($entity->getPassword(), $entity->getSalt()); 
-                $entity->setPassword($tempPassword);                
+                $tempPassword = $encoder->encodePassword($entity->getClave(), $entity->getSalt()); 
+                $entity->setClave($tempPassword);
             }
 
             $em->flush();
