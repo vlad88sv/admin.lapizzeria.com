@@ -168,8 +168,6 @@ class EmpleadosController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Empleados entity.');
         }
-
-        $originalPassword = $entity->getPassword(); 
         
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
@@ -177,14 +175,11 @@ class EmpleadosController extends Controller
 
         if ($editForm->isValid()) {
             $plainPassword = $editForm->get('clave')->getData();                    
-            if (strlen($plainPassword) != 0)  {  
+            if ($plainPassword !== "")  {  
                 //encode the password   
                 $encoder = $this->container->get('security.encoder_factory')->getEncoder($entity); //get encoder for hashing pwd later
                 $tempPassword = $encoder->encodePassword($entity->getPassword(), $entity->getSalt()); 
                 $entity->setPassword($tempPassword);                
-            }
-            else {
-                $entity->setPassword($originalPassword);
             }
 
             $em->flush();
