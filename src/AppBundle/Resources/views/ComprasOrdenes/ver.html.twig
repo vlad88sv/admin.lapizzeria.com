@@ -25,8 +25,11 @@
             </tr>
     </table>
     <hr />
-    {% if (data.orden.orden.estado.id == 1) %}
+    {% if (data.orden.orden.estado.id in [1,2,3]) %}
         {% include 'AppBundle:comprasOrdenes:vistaAprobacion.html.twig' %}
+    {% elseif (data.orden.orden.estado.id in [4,5]) %}
+        {% include 'AppBundle:comprasOrdenes:vistaNormal.html.twig' %}
+        {% include 'AppBundle:comprasOrdenes:vistaConfirmacion.html.twig' %}
     {% else %}
         {% include 'AppBundle:comprasOrdenes:vistaNormal.html.twig' %}
     {% endif %}

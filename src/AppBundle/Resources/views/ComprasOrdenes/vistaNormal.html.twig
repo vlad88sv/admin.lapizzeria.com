@@ -1,12 +1,16 @@
 <h3>Detalle de compra</h3>
-<table class="table table-condensed table-responsive table-striped">
+<table class="table table-condensed table-responsive">
     <tbody>
+        {% set ultimoTitulo = '' %}
         {%- for producto in data.orden.productos -%}
+        {% if (ultimoTitulo != producto.producto.proveedor.nombre ) %}
         <tr>
-            <th colspan="4">
+            <th style="background: ghostwhite;" colspan="4">
                 {{ producto.producto.proveedor.nombre }}
+                {% set ultimoTitulo = producto.producto.proveedor.nombre %}
             </th>
         </tr>
+        {% endif %}
         <tr>
             <td style="width:100%;">
                 {{ producto.cantidad }} <span style="font-style: italic">{{ (producto.cantidad > 1) ? producto.unidad.nombrePlural : producto.unidad.nombreSingular }}</span> de {{ producto.producto.nombre }}</p>

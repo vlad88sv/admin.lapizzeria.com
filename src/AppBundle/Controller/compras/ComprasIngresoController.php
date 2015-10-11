@@ -52,12 +52,17 @@ class ComprasIngresoController extends Controller {
         if ($request->getMethod() != 'POST') {
             return $this->redirectToRoute('compras_ingreso__seleccionar_sucursal');
         }
+        
+        // Validamos que haya mandado productos
+        if (!is_array($request->get('producto'))) {
+            return $this->redirectToRoute('compras_ingreso__seleccionar_sucursal');
+        }
 
         $em = $this->getDoctrine()->getManager();
 
         // Le establecemos el estado 1: "Pendiente revisión"       
-        $estado = $em->getRepository('AppBundle:ComprasOrdenesEstados')->find(1);
-        
+        $estado = $em->getReference('AppBundle:ComprasOrdenesEstados', 1);
+                
         $dOrden = new ComprasOrdenes();
         $dOrden->setIngresadoDt(new \DateTime());
         $dOrden->setSucursal($em->getRepository('AppBundle:Sucursales')->find($request->get('sucursal')));
@@ -69,7 +74,9 @@ class ComprasIngresoController extends Controller {
         // Agregamos el comentario
         $dOrdenComentario = new ComprasOrdenesComentarios();
         $dOrdenComentario->setComentario("Orden de compra ingresa vía web");
+        $dOrdenComentario->setOrden($dOrden);
         $dOrdenComentario->setEstado($estado);
+        $dOrdenComentario->setActivo(true);
         $dOrdenComentario->setCreadoPor($this->getUser());
         $em->persist($dOrdenComentario);
         $em->flush();
@@ -85,7 +92,7 @@ class ComprasIngresoController extends Controller {
             $dOrdenProducto->setCantidadSugerida($dProductoSucursal->getCantidadPromedio());
             $dOrdenProducto->setCantidadSolicitada($cantidad);
             $dOrdenProducto->setCantidadAprobada(0.00);
-            $dOrdenProducto->setCantidad(0.00);
+            $dOrdenProducto->setCantidad($cantidad);
             $dOrdenProducto->setUnidad($dProducto->getUnidad());
                     
             $em->persist($dOrdenProducto);
@@ -100,23 +107,11 @@ class ComprasIngresoController extends Controller {
     }
 
     private function sendNotification($iOrden) {
-        $mailer = $this->get('mailer');
-        /* @var $mailer \Swift_Message */
-        $compras = $this->get('compras');
-        /* @var $compras \AppBundle\Controller\compras\ServicioComprasController */
-
-        $orden = $compras->getDetalleOrdenCompra($iOrden);
-
-        $message = $mailer->createMessage()
-                ->setFrom('info@lapizzeria.com')
-                ->setSubject('Nueva orden de compra!')
-                ->setTo('vladimiroski@gmail.com')
-                ->setBody(
-                $this->renderView(
-                        'AppBundle:Correos:enviarOrden.html.twig', array('orden' => $orden)
-                ), 'text/html'
-        );
-        $mailer->send($message);
+        $asunto = "Nueva orden de compra";
+        $titulo = 'Nueva orden ingresada';
+        $mensaje = 'Detalles de la orden';
+        $this->get('compras')->sendNotification($iOrden, 'vladimiroski@gmail.com', $asunto, $titulo, $mensaje);
+        
     }
 
 }

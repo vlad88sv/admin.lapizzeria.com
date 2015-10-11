@@ -137,4 +137,32 @@ class ComprasOrdenes
     {
         return $this->creadoPor;
     }
+    /**
+     * @var \AppBundle\Entity\Empleados
+     */
+    private $comprador;
+
+
+    /**
+     * Set comprador
+     *
+     * @param \AppBundle\Entity\Empleados $comprador
+     * @return ComprasOrdenes
+     */
+    public function setComprador(\AppBundle\Entity\Empleados $comprador = null)
+    {
+        $this->comprador = $comprador;
+
+        return $this;
+    }
+
+    /**
+     * Get comprador
+     *
+     * @return \AppBundle\Entity\Empleados 
+     */
+    public function getComprador()
+    {
+        return $this->comprador;
+    }
 }

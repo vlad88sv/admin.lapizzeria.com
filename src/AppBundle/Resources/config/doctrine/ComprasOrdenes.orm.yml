@@ -17,6 +17,16 @@ AppBundle\Entity\ComprasOrdenes:
             column: ingresado_dt
             
     manyToOne:
+        comprador:
+            targetEntity: Empleados
+            cascade: {  }
+            nullable: null
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                comprador_id:
+                    referencedColumnName: id
+            orphanRemoval: false
         creadoPor:
             targetEntity: Empleados
             cascade: {  }

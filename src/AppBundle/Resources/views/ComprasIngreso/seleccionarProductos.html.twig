@@ -5,8 +5,8 @@
     <div class="form-inline">
         <div class="form-group">
             <label class="sr-only" for="cmbProductos">Producto</label>
-            <select class="form-control" id="cmbProductos" style="width:250px;">
-                <option value="">Seleccione un producto</option>
+            <select class="form-control" id="cmbProductos" style="width:250px;"  data-placeholder="Seleccione el comprador">
+                <option></option>
                 {% for producto in data.productos %}
                     <option value="{{ producto.producto.id }}">{{ producto.producto.nombre }}</option>
                 {% endfor %}
@@ -19,9 +19,10 @@
                 <div id="unidad" class="input-group-addon"></div>
             </div>
         </div>
-        <button id="btnAgregarProducto" class="btn btn-primary">Agregar</button>
-    </div>
+            <button type="button" id="btnAgregarProducto" class="btn btn-primary" disabled="disabled">Agregar</button>
+    </div>  
     <hr />
+    <div class="alert alert-info" id="notificacion" style="display: none;" role="alert">Aca se muestran las notificaciones</div>
     <form method="post" action="{{ path('compras_ingreso__guardar_productos') }}">
     <input type="hidden" name="sucursal" value="{{data.sucursal.id}}"/>
     <table id="tblProductos" class="table table-bordered table-condensed table-hover table-responsive table-striped">
@@ -33,7 +34,7 @@
         <tbody></tbody>
     </table>
     <hr />
-    <button id="btnEnviarLista" class="btn btn-primary">Enviar lista</button>
+    <button id="btnEnviarLista" class="btn btn-primary" disabled="disabled">Enviar lista</button>
     </form>
 {% endblock %}
 {% block javascripts %}
@@ -45,6 +46,10 @@
             
         var aProductos = [];
 
+        function notificar($mensaje) {
+            $("#notificacion").html($mensaje).fadeIn(500).fadeOut(2000);
+        }
+
         function agregarProducto() {
             var producto = {};
             producto.id = $("#cmbProductos").val();            
@@ -54,7 +59,9 @@
             // Verificar si ya se agrego el producto
             for(var tmpProducto in aProductos) {
                 if (producto.id === aProductos[tmpProducto].id) {
-                    alert("Esto producto ya esta agregado a la lista.");
+                    aProductos[tmpProducto].cantidad = parseFloat(aProductos[tmpProducto].cantidad) + parseFloat($("#txtCantidad").val()); 
+                    notificar("Ya se habia añadido a la lista, se sumó a la cantidad.");
+                    renderizarDatos();
                     return;
                 }
             }
@@ -77,19 +84,32 @@
             
             tblProductos.empty();
             
+            $("#btnEnviarLista").prop('disabled', (aProductos.length === 0 ));
+            
             for(var producto in aProductos) {
                 detalle_producto = '';
                 detalle_producto += '<span style="cursor:pointer;" rel="'+producto+'" class="eliminarProducto glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;';
                 detalle_producto += '<input type="hidden" name="producto['+aProductos[producto].id+']" value="'+aProductos[producto].cantidad+'"/>';
                 detalle_producto += (parseFloat(aProductos[producto].cantidad) === 0.00 ? aDictProductos['id_' + aProductos[producto].id].cant_promedio : aProductos[producto].cantidad);;
-                detalle_producto += aDictProductos['id_'+aProductos[producto].id].unidad + ' de ';
+                detalle_producto += ' ' + aDictProductos['id_'+aProductos[producto].id].unidad + ' de ';
                 detalle_producto += aProductos[producto].nombre;
                 tblProductos.append('<tr><td><div class="input-group">'+detalle_producto+'</div></td></tr>');
             }
             
+            
         }
         
         function actualizarUnidad(){
+            
+            $('#btnAgregarProducto').prop('disabled', false);
+            
+            if ($(this).val() == '') {
+                $("#unidad").html('');
+                $("#txtCantidad").val('0');
+                $('#btnAgregarProducto').prop('disabled', true);
+                return;
+            }
+            
             $("#unidad").html(aDictProductos['id_'+$(this).val()].unidad);
             $("#txtCantidad").focus().select();
         }

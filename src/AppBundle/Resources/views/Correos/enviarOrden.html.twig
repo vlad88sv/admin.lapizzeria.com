@@ -1,27 +1,48 @@
-<h1>Nueva orden de compra</h1>
-<p>Se ha ingresado una orden de compra al sistema.</p>
+<h1>{{ titulo }}</h1>
+<p>{{ mensaje }}</p>
 <p>
-    <a href="{{ url('compras_ordenes_ver', {orden : orden.orden.id }) }}">Para visualizarla siga este enlace</a>
+    <a href="{{ url('compras_ordenes_ver', {orden : orden.orden.id }) }}">Ver esta orden en el sistema</a>
 </p>
 <hr />
-<table class="table table-condensed">
-    <tr>
+<h1>Detalle de la orden</h1>
+<table>
     <tbody>
         <tr>
             <th style="text-align:right;">Sucursal</th>
-            <td style="width:60%">{{ orden.orden.sucursal.nombre }}</td>
+            <td style="width:80%">{{ orden.orden.sucursal.nombre }}</td>
         </tr>
         <tr>
             <th style="text-align:right;">Estado</th>
-            <td style="width:60%">{{ orden.orden.estado.estado }}</td>
+            <td>{{ orden.orden.estado.estado }}</td>
         </tr>
         <tr>
             <th style="text-align:right;">Ingresada por</th>
-            <td style="width:60%">{{ orden.orden.creadoPor.nombre }}</td>
+            <td>{{ orden.orden.creadoPor.nombre }}</td>
+        </tr>
+        <tr>
+            <th style="text-align:right;">Comprador</th>
+            <td>{{ orden.orden.comprador.nombre|default('Sin asignar') }}</td>
         </tr>
         <tr>
             <th style="text-align:right;">Fecha de ingreso</th>
-            <td style="width:60%">{{ orden.orden.ingresadoDt.date }}</td>
+            <td>{{ orden.orden.ingresadoDt.date }}</td>
         </tr>
-    </tr>
+    </tbody>
 </table>
+
+<h1>Detalle de compra</h1>
+<ul>
+    {% set ultimoTitulo = '' %}
+    {%- for producto in orden.productos -%}
+    {% if (ultimoTitulo != producto.producto.proveedor.nombre ) %}
+        <br />
+        <li style="font-weight: bold;font-size: 1.2em;font-family: sans-serif;">
+            {{ producto.producto.proveedor.nombre }}
+            {% set ultimoTitulo = producto.producto.proveedor.nombre %}
+        </li>
+    {% endif %}
+    <li>
+        {{ producto.cantidad }} <span style="font-style: italic">{{ (producto.cantidad > 1) ? producto.unidad.nombrePlural : producto.unidad.nombreSingular }}</span> de {{ producto.producto.nombre }}</p>
+    </li>
+    {% endfor %}
+</ul>

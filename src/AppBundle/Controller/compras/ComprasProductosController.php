@@ -44,7 +44,7 @@ class ComprasProductosController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('compras_productos_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('compras_productos_sucursales', array('producto' => $entity->getId())));
         }
 
         return $this->render('AppBundle:ComprasProductos:new.html.twig', array(
